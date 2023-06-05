@@ -1,3 +1,12 @@
+<?php
+    $logado = false;
+    session_start();
+    if(isset($_SESSION['id'])){
+        $logado = true;
+        $id_user_atual = $_SESSION['id'];
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,30 +19,42 @@
 <body onload="evitar_dados_reload()";>
     <a href="#" class="logo">Nome do site</a>
 
-    <div class="reg-acc">
-        <a href="login.php">Login</a>
-        <a href="registrar.php">Registrar</a>
-    </div>
-
-    <form action="index.php" method="post">
-        <input type="submit" value="Apagar sessão" name="del_ses">
-    </form>
-
     <?php 
 
-        session_start();
+        if($logado){
+        ?>
+            <div class="my-acc">
+                <a href="#" class="sua-conta">Sua Conta</a>
+            </div>
+                
+            <form action="index.php" method="post">
+                <div class="logout-box">
+                    <input type="submit" value="Logout" name="logout" class="logout">
+                </div>
+            </form>
+        <?php 
+        }else{
+        ?>
+            <div class="reg-acc">
+                <a href="login.php">Login</a>
+                <a href="registrar.php">Registrar</a>
+            </div>
+        <?php
+        }
+    ?>
+
+    <?php 
         
-        if(isset($_POST['del_ses'])){
+        if(isset($_POST['logout'])){
 
             session_destroy();
+            header("location:index.php");
             exit();
         }
 
-        if(isset($_SESSION['id'])){
+        if($logado){
 
-            $id = $_SESSION['id'];
-
-            echo "<h1> BEM VINDO $id!!";
+            echo "<h1> BEM VINDO $id_user_atual!!";
         }
     ?>
 </body>
