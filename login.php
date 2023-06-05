@@ -42,13 +42,14 @@
             $user = $_POST['user'];
             $pass = $_POST['pass'];
 
-            $check = $conn->prepare('SELECT * FROM `login` WHERE `nome_user` = :user AND `senha_user` = :pass');
+            $check = $conn->prepare('SELECT * FROM `login` WHERE `nome_user` = :user AND `senha_user` = md5(:pass);');
             $check->bindValue(":user", $user);
             $check->bindValue(":pass", $pass);
             $check->execute();
 
             if($check->rowCount() == 0){
                 echo "Usuário ou senha incorreto.";
+                echo "<br><br> $user ".md5($pass);
             }else{
                 
                 $get_id = $check->fetch();
