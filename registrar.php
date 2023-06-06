@@ -69,8 +69,13 @@
                         $id_login = $row['id_user'];
                         $_SESSION['id'] = $id_login;
                         
-                        $foto = $conn->prepare("INSERT INTO `fotoperfil` (id_foto, url_foto) VALUES (:id, 'img/pfp/defaultpic.jpg');");
+                        $default_path = "img/pfp/";
+                        $default_img = "defaultpic.jpg";
+                        $final_path = $default_path.$default_img;
+
+                        $foto = $conn->prepare("INSERT INTO `fotoperfil` (id_foto, url_foto) VALUES (:id, :finalpath);");
                         $foto->bindValue(":id", $id_login);
+                        $foto->bindValue(":finalpath", $final_path);
                         $foto->execute();
 
                         $cria_bio = $conn->prepare('INSERT INTO `bio` (id_bio, user_bio) VALUES (:id, "Escreva sobre você");');

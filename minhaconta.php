@@ -33,12 +33,11 @@
     <link rel="stylesheet" href="css/minhaconta.css" type="text/css">
 </head>
 <body onload="evitar_dados_reload()";>
-    <a href="index.php">Nome do site</a>
+    <a href="index.php">Doasans</a>
     <?php 
         echo "Você tem $info[score_user] pontos acumulados no site!";
-        echo $info_foto['url_foto'];
         ?>
-            <img src="<?php echo $info_foto['url_foto'] ?>">
+            <img class="pfp" src="<?php echo $info_foto['url_foto'] ?>">
         <?php
     ?>
     <div class="bio-box">
@@ -101,11 +100,7 @@
             if(in_array($arqext, $allowext)){
                 if($arqerro == 0){
                     if($tamanhoarq < $tamanhomax){
-                        if($renomear == true){
-                            $arq_novonome = time().$extfinal;   
-                        }else{
-                            $arq_novonome = $arqnome.$extfinal;
-                        }
+                        $arq_novonome = ($renomear == true) ? time().$extfinal : $arqnome.$extfinal;
 
                         $destino = $pasta.$arq_novonome;
 
