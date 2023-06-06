@@ -25,7 +25,7 @@
         if($logado){
         ?>
             <div class="my-acc">
-                <a href="#" class="sua-conta">Sua Conta</a>
+                <a href="minhaconta.php" class="sua-conta">Sua Conta</a>
             </div>
                 
             <form action="index.php" method="post">
@@ -61,7 +61,7 @@
 
             $info = $infos->fetch();
 
-            echo "<h1> Bem vindo(a), $info[nome_user], você tem $info[score_user] pontos acumulados";
+            echo "<h1> Bem vindo(a), $info[nome_user]!";
         }
     ?>
 </body>

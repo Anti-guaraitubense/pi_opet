@@ -42,7 +42,7 @@
             $user = $_POST['user'];
             $pass = $_POST['pass'];
 
-            $check = $conn->prepare('SELECT * FROM `login` WHERE `nome_user` = :user AND `senha_user` = md5(:pass);');
+            $check = $conn->prepare('SELECT * FROM `login` WHERE `nome_user` = :user AND `senha_user` = md5(:pass) AND `status_user` = 1');
             $check->bindValue(":user", $user);
             $check->bindValue(":pass", $pass);
             $check->execute();
