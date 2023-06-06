@@ -27,6 +27,7 @@
         <div class="login-right">
             <div class="card-login">
                 <h1>LOGIN</h1>
+                <form action="login.php" method="post">
                 <div class="textfield">
                     <label for="user">Usuário</label>
                     <input type="text" name="user" placeholder="Usuário">
@@ -35,10 +36,10 @@
                     <label for="pass">Senha</label>
                     <input type="password" name="pass" placeholder="Senha">
                 </div>
-                <button class="button-login">Login</button>
-                <button class="button-register">Registre-se</button>
-                <button class="button-back">Voltar</button>
-
+                    <button class="button-login" name="login">Login</button>
+                    <button class="button-register" name="register">Registre-se</button>
+                    <button class="button-back" name="return">Voltar</button>
+                </form>
              </div>
         </div>
     </div>
@@ -52,10 +53,22 @@
             exit();
         }
 
+        if(isset($_POST['register'])){
+
+            header("location:registrar.php");
+            exit();
+        }
+
         if(isset($_POST['login'])){
 
             $user = $_POST['user'];
             $pass = $_POST['pass'];
+
+            if($user == NULL || $pass == NULL){
+
+                $user = " ";
+                $pass = " ";
+            }
 
             $check = $conn->prepare('SELECT * FROM `login` WHERE `nome_user` = :user AND `senha_user` = md5(:pass) AND `status_user` = 1');
             $check->bindValue(":user", $user);
@@ -63,8 +76,13 @@
             $check->execute();
 
             if($check->rowCount() == 0){
-                echo "Usuário ou senha incorreto.";
-                echo "<br><br> $user ".md5($pass);
+                ?>
+                    <!-- html -->
+
+                    <h1>Usuário ou senha não encontrada</h1>
+
+
+                <?php
             }else{
                 
                 $get_id = $check->fetch();
