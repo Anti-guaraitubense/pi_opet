@@ -36,6 +36,9 @@
                     <input type="password" name="pass" placeholder="Senha">
                 </div>
                 <button class="button-login">Login</button>
+                <button class="button-register">Registre-se</button>
+                <button class="button-back">Voltar</button>
+
              </div>
         </div>
     </div>
