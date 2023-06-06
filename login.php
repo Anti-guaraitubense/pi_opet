@@ -77,9 +77,10 @@
 
             if($check->rowCount() == 0){
                 ?>
-                    <!-- html -->
-
-                    <h1>Usuário ou senha não encontrada</h1>
+                    
+                    
+                        <h6 class="error">Usuário ou senha não encontrada!</h6>
+                
 
 
                 <?php
