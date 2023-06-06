@@ -54,7 +54,7 @@
                 if($verif_nome->rowCount() == 0){
                     if($verif_email->rowCount() == 0){
 
-                        $reg = $conn->prepare('INSERT INTO `login` (nome_user, senha_user, email_user) VALUES (:nome, md5(:pass), :email);');
+                        $reg = $conn->prepare('INSERT INTO `login` (nome_user, senha_user, email_user, status_user, score_user) VALUES (:nome, md5(:pass), :email, 1, 0);');
                         $reg->bindValue(":nome", $user);
                         $reg->bindValue(":pass", $pass);
                         $reg->bindValue(":email", $email);

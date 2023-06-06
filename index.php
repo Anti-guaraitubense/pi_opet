@@ -1,4 +1,5 @@
 <?php
+    include_once 'config.php';
     $logado = false;
     session_start();
     if(isset($_SESSION['id'])){
@@ -53,8 +54,14 @@
         }
 
         if($logado){
+            
+            $infos = $conn->prepare('SELECT * FROM `login` WHERE id_user = :id');
+            $infos->bindValue(":id", $id_user_atual);
+            $infos->execute();
 
-            echo "<h1> BEM VINDO $id_user_atual!!";
+            $info = $infos->fetch();
+
+            echo "<h1> Bem vindo(a), $info[nome_user], você tem $info[score_user] pontos acumulados";
         }
     ?>
 </body>
