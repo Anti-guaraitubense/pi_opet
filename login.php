@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>pagina de login</title>
-    <link rel="stylesheet" href="css/login.css" type="text/css">
+    <title>Página de Login</title>
+    <link rel="stylesheet" type="text/css" href="css/login.css">
     <script src="js/script.js"></script>
 </head>
 <body onload="evitar_dados_reload()";>
@@ -19,13 +19,25 @@
         }
     ?>
 
-    <div class="login-box">
-        <form action="login.php" method="post">
-            <input type="text" name="user" placeholder="Usuário">
-            <input type="password" name="pass" placeholder="Senha">
-            <input type="submit" name="login" value="Entrar">
-            <input type="submit" name="return" value="Voltar">
-        </form>
+    <div class="login-main">
+        <div class="login-left">
+            <h1>Faça login<br> E faça parte de nosso time!</h1>
+            <img src="imgs/comida.svg" class="animation" alt="Animação comida">
+        </div>
+        <div class="login-right">
+            <div class="card-login">
+                <h1>LOGIN</h1>
+                <div class="textfield">
+                    <label for="user">Usuário</label>
+                    <input type="text" name="user" placeholder="Usuário">
+                </div>
+                <div class="textfield">
+                    <label for="pass">Senha</label>
+                    <input type="password" name="pass" placeholder="Senha">
+                </div>
+                <button class="button-login">Login</button>
+             </div>
+        </div>
     </div>
 
     <?php 
