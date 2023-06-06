@@ -68,8 +68,15 @@
                         $row = $get_id->fetch();
                         $id_login = $row['id_user'];
                         $_SESSION['id'] = $id_login;
+                        
+                        $foto = $conn->prepare("INSERT INTO `fotoperfil` (id_foto, url_foto) VALUES (:id, 'img/pfp/defaultpic.jpg');");
+                        $foto->bindValue(":id", $id_login);
+                        $foto->execute();
 
-                        echo "<script>alert('Registrado com sucesso!');</script>";
+                        $cria_bio = $conn->prepare('INSERT INTO `bio` (id_bio, user_bio) VALUES (:id, "Escreva sobre você");');
+                        $cria_bio->bindValue(":id", $id_login);
+                        $cria_bio->execute();
+
                         header('location:index.php');
                     }
                     else{

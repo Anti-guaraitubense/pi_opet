@@ -1,0 +1,7 @@
+.bio-box{
+
+    width: 500px;
+    height: 100px;
+    background-color: red;
+    word-break: break-all;
+}
