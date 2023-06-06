@@ -22,7 +22,7 @@
     <div class="login-main">
         <div class="login-left">
             <h1>Faça login<br> E faça parte de nosso time!</h1>
-            <img src="imgs/comida.svg" class="animation" alt="Animação comida">
+            <img src="img/comida.svg" class="animation" alt="Animação comida">
         </div>
         <div class="login-right">
             <div class="card-login">
