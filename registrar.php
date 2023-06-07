@@ -55,6 +55,12 @@
                 header("location:index.php");
                 exit();
             }
+
+            if(isset($_POST['login'])){
+
+                header("location:login.php");
+                exit();
+            }
             
             if(isset($_POST['reg'])){
 
