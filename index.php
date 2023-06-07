@@ -60,8 +60,9 @@
             $infos->execute();
 
             $info = $infos->fetch();
+            $nome_fix = ucfirst($info['nome_user']);
 
-            echo "<h1> Bem vindo(a), $info[nome_user]!";
+            echo "<h1> Bem vindo(a), $nome_fix!";
         }
     ?>
 </body>

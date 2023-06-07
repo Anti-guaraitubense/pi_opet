@@ -66,8 +66,8 @@
 
             if($user == NULL || $pass == NULL){
 
-                $user = " ";
-                $pass = " ";
+                $user = "";
+                $pass = "";
             }
 
             $check = $conn->prepare('SELECT * FROM `login` WHERE `nome_user` = :user AND `senha_user` = md5(:pass) AND `status_user` = 1');
@@ -77,12 +77,7 @@
 
             if($check->rowCount() == 0){
                 ?>
-                    
-                    
                         <h6 class="error">Usuário ou senha não encontrada!</h6>
-                
-
-
                 <?php
             }else{
                 
