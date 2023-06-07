@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
 
-
 body {
     margin: 0;
     font-family: 'Noto Sans', sans-serif;
@@ -35,6 +34,8 @@ body *{
 .login-left > h1{
     font-size: 3vw;
     color: #77ffc0;
+    font-style: italic;
+    animation: text 2s linear 0s 1 normal forwards;
 }
 
 .login-right{
@@ -193,8 +194,8 @@ body *{
 
 .error{
     position: absolute;
-    top: 46.2vh;
-    left: 64.5vw;
+    top: 45%;
+    left: 63.5%;
     color: red;
     animation: fadeIn 0.5s;
 }
@@ -204,6 +205,51 @@ body *{
     100% {opacity: 1;}
 }
 
+@keyframes text {
+	0% {
+		animation-timing-function: ease-in;
+		opacity: 1;
+		transform: translateY(-45px);
+	}
+
+	24% {
+		opacity: 1;
+	}
+
+	40% {
+		animation-timing-function: ease-in;
+		transform: translateY(-24px);
+	}
+
+	65% {
+		animation-timing-function: ease-in;
+		transform: translateY(-12px);
+	}
+
+	82% {
+		animation-timing-function: ease-in;
+		transform: translateY(-6px);
+	}
+
+	93% {
+		animation-timing-function: ease-in;
+		transform: translateY(-4px);
+	}
+
+	25%,
+	55%,
+	75%,
+	87% {
+		animation-timing-function: ease-out;
+		transform: translateY(0px);
+	}
+
+	100% {
+		animation-timing-function: ease-out;
+		opacity: 1;
+		transform: translateY(0px);
+	}
+}
 
 
 

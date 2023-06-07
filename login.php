@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Login</title>
+    <title>Login</title>
     <link rel="stylesheet" type="text/css" href="css/login.css">
     <script src="js/script.js"></script>
 </head>
@@ -30,7 +30,7 @@
                 <form action="login.php" method="post">
                 <div class="textfield">
                     <label for="user">Usuário</label>
-                    <input type="text" name="user" placeholder="Usuário">
+                    <input type="text" name="user" placeholder="Usuário" autocomplete="off">
                 </div>
                 <div class="textfield">
                     <label for="pass">Senha</label>

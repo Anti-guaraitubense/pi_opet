@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+body *{
+    box-sizing: border-box;
+    
+}
+
+.reg-main{
+    width: 100vw;
+    height: 100vh;
+    background: #201b2c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reg-left{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.animation{
+    width:35vw;
+}
+
+.reg-left > h1{
+    font-size: 3vw;
+    color: #77ffc0;
+    font-style: italic;
+    font-weight: bold;
+    animation: text 2s linear 0s 1 normal forwards;
+
+}
+
+.reg-right{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-reg{
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px 35px;
+    background: #2f2841;
+    border-radius: 20px;
+    box-shadow: 0px 10px 40px #00000056;
+}
+
+.card-reg > h1{
+    color: #00ff88;
+    font-weight: 800;
+    margin: 0;
+    text-shadow: inherit #00000056;
+}
+
+.textfield{
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 10px 0px;
+}
+
+.textfield > input{
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    background: #514869;
+    color: #f0ffffde;
+    font-size: 12pt;
+    box-shadow: 0px 10px 40px #00000056;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.textfield > label{
+    color: #f0ffffde;
+    margin-bottom: 10px;
+}
+
+.textfield > input::placeholder{
+    color: #f0ffff94;
+}
+
+.button-reg{
+    width: 90%;
+    padding: 12px 0px;
+    margin: 20px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #2b134b;
+    background-color: #00ff88;
+    cursor: pointer;
+    box-shadow: 0px 10px 40px -12px #00ff8052;
+    transition: transform, .2s;
+    
+}
+
+.button-login{
+    width: 90%;
+    padding: 12px 0px;
+    margin: 20px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #2b134b;
+    background-color: #00ff88;
+    cursor: pointer;
+    box-shadow: 0px 10px 40px -12px #00ff8052;
+    transition: transform, .2s;
+}
+
+.button-back{
+    width: 90%;
+    padding: 12px 0px;
+    margin: 20px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #2b134b;
+    background-color: #00ff88;
+    cursor: pointer;
+    box-shadow: 0px 10px 40px -12px #00ff8052;
+    transition: transform, .2s;
+}
+
+@media only screen and (max-width:950px){
+    .card-login{
+        width: 85%;
+    }
+}
+
+@media only screen and (max-width:600px){
+    .main-login{
+        flex-direction: column;
+    }
+    .login-left > h1{
+        display: none;
+    }
+    .login-left{
+        width: 100%;
+        height: auto;
+    }
+    .login-right{
+        width: 100%;
+        height: auto;
+    }
+    .animation{
+        width: 50vw;
+    }
+    .card-login{
+        width: 90%;
+    }
+}
+
+.button-login:hover{
+    transform: scale(1.1);
+    transition: transform, .2s;
+}
+
+.button-reg:hover{
+    transform: scale(1.1);
+    transition: transform, .2s;
+}
+
+.button-back:hover{
+    transform: scale(1.1);
+    transition: transform, .2s;
+}
+
+.error{
+    position: absolute;
+    top: 45%;
+    left: 63.5%;
+    color: red;
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn{
+    0% { opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@keyframes text {
+	0% {
+		animation-timing-function: ease-in;
+		opacity: 1;
+		transform: translateY(-45px);
+	}
+
+	24% {
+		opacity: 1;
+	}
+
+	40% {
+		animation-timing-function: ease-in;
+		transform: translateY(-24px);
+	}
+
+	65% {
+		animation-timing-function: ease-in;
+		transform: translateY(-12px);
+	}
+
+	82% {
+		animation-timing-function: ease-in;
+		transform: translateY(-6px);
+	}
+
+	93% {
+		animation-timing-function: ease-in;
+		transform: translateY(-4px);
+	}
+
+	25%,
+	55%,
+	75%,
+	87% {
+		animation-timing-function: ease-out;
+		transform: translateY(0px);
+	}
+
+	100% {
+		animation-timing-function: ease-out;
+		opacity: 1;
+		transform: translateY(0px);
+	}
+}
+
+
+
+
+
+

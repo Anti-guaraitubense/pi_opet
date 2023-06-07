@@ -2,8 +2,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>pagina de registro</title>
-    <link rel="stylesheet" href="css/registro.css" type="text/css">
+    <title>Registre-se</title>
+    <link rel="stylesheet" type="text/css" href="css/registro.css">
     <script src="js/script.js"></script>
 </head>
 <body onload="evitar_dados_reload()";>
@@ -15,17 +15,36 @@
             header("location:index.php");
         }
     ?>
-    
-    <div class="reg-box">
-        <form action="registrar.php" method="post">
-            <input type="email" name="email" placeholder="E-mail">
-            <input type="text" name="user" placeholder="Usuário" autocomplete="off">
-            <input type="password" name="pass" placeholder="Senha" autocomplete="off">
-            <input type="submit" name="reg" value="Registrar">
 
-            <input type="submit" name="return" value="Voltar">
-        </form>
+    <div class="reg-main">
+        <div class="reg-right">
+            <div class="card-reg">
+                <h1>CRIE SUA CONTA</h1>
+                <form action="registrar.php" method="post">
+                <div class="textfield">
+                    <label for="email">E-mail</label>
+                    <input type="email" name="email" placeholder="E-mail" autocomplete="off">
+                </div>
+                <div class="textfield">
+                    <label for="user">Usuário</label>
+                    <input type="text" name="user" placeholder="Usuário" autocomplete="off">
+                </div>
+                <div class="textfield">
+                    <label for="pass">Senha</label>
+                    <input type="password" name="pass" placeholder="Senha">
+                </div>
+                    <button class="button-reg" name="reg">Criar conta</button>
+                    <button class="button-login" name="login">Faça Login</button>
+                    <button class="button-back" name="return">Voltar</button>
+                </form>
+             </div>
+        </div>
+        <div class="reg-left">
+            <h1>Crie uma conta!<br> E faça parte do nosso time</h1>
+            <img src="img/entrega.svg" class="animation" alt="Animação comida">
+        </div>
     </div>
+
 
         <?php 
 
