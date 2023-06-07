@@ -55,62 +55,71 @@
                 header("location:index.php");
                 exit();
             }
-
+            
             if(isset($_POST['reg'])){
 
                 $email = $_POST['email'];
                 $user = $_POST['user'];
                 $pass = $_POST['pass'];
+                if(!($email == "" || $user == "" || $pass == "")){
 
-                $verif_nome = $conn->prepare('SELECT `nome_user` FROM `login` WHERE `nome_user` = :user;');
-                $verif_nome->bindValue(":user", $user);
-                $verif_nome->execute();
+                    $verif_nome = $conn->prepare('SELECT `nome_user` FROM `login` WHERE `nome_user` = :user;');
+                    $verif_nome->bindValue(":user", $user);
+                    $verif_nome->execute();
 
-                $verif_email = $conn->prepare('SELECT `email_user` FROM `login` WHERE `email_user` = :email');
-                $verif_email->bindValue(":email", $email);
-                $verif_email->execute();
-
-                if($verif_nome->rowCount() == 0){
+                    $verif_email = $conn->prepare('SELECT `email_user` FROM `login` WHERE `email_user` = :email');
+                    $verif_email->bindValue(":email", $email);
+                    $verif_email->execute();
+                
                     if($verif_email->rowCount() == 0){
+                        if($verif_nome->rowCount() == 0){
 
-                        $reg = $conn->prepare('INSERT INTO `login` (nome_user, senha_user, email_user, status_user, score_user) VALUES (:nome, md5(:pass), :email, 1, 0);');
-                        $reg->bindValue(":nome", $user);
-                        $reg->bindValue(":pass", $pass);
-                        $reg->bindValue(":email", $email);
-                        $reg->execute();
+                            $reg = $conn->prepare('INSERT INTO `login` (nome_user, senha_user, email_user, status_user, score_user) VALUES (:nome, md5(:pass), :email, 1, 0);');
+                            $reg->bindValue(":nome", $user);
+                            $reg->bindValue(":pass", $pass);
+                            $reg->bindValue(":email", $email);
+                            $reg->execute();
 
-                        $get_id = $conn->prepare('SELECT `id_user` FROM `login` WHERE `nome_user` = :user AND `email_user` = :email;');
-                        $get_id->bindValue(":user", $user);
-                        $get_id->bindValue(":email", $email);
-                        $get_id->execute();
+                            $get_id = $conn->prepare('SELECT `id_user` FROM `login` WHERE `nome_user` = :user AND `email_user` = :email;');
+                            $get_id->bindValue(":user", $user);
+                            $get_id->bindValue(":email", $email);
+                            $get_id->execute();
 
-                        $row = $get_id->fetch();
-                        $id_login = $row['id_user'];
-                        $_SESSION['id'] = $id_login;
-                        
-                        $default_path = "img/pfp/";
-                        $default_img = "defaultpic.jpg";
-                        $final_path = $default_path.$default_img;
+                            $row = $get_id->fetch();
+                            $id_login = $row['id_user'];
+                            $_SESSION['id'] = $id_login;
+                            
+                            $default_path = "img/pfp/";
+                            $default_img = "defaultpic.jpg";
+                            $final_path = $default_path.$default_img;
 
-                        $foto = $conn->prepare("INSERT INTO `fotoperfil` (id_foto, url_foto) VALUES (:id, :finalpath);");
-                        $foto->bindValue(":id", $id_login);
-                        $foto->bindValue(":finalpath", $final_path);
-                        $foto->execute();
+                            $foto = $conn->prepare("INSERT INTO `fotoperfil` (id_foto, url_foto) VALUES (:id, :finalpath);");
+                            $foto->bindValue(":id", $id_login);
+                            $foto->bindValue(":finalpath", $final_path);
+                            $foto->execute();
 
-                        $cria_bio = $conn->prepare('INSERT INTO `bio` (id_bio, user_bio) VALUES (:id, "Escreva sobre você");');
-                        $cria_bio->bindValue(":id", $id_login);
-                        $cria_bio->execute();
+                            $cria_bio = $conn->prepare('INSERT INTO `bio` (id_bio, user_bio) VALUES (:id, "Escreva sobre você");');
+                            $cria_bio->bindValue(":id", $id_login);
+                            $cria_bio->execute();
 
-                        header('location:index.php');
+                            header('location:index.php');
+                        }
+                        else{
+                            ?>
+                            <h6 class="error">Nome já utilizado.</h6>
+                        <?php
+                        }
                     }
                     else{
-                        echo "E-mail já utilizado.";
+                        ?>
+                            <h6 class="error">E-mail já utilizado.</h6>
+                        <?php
                     }
+                }else{
+                    ?>
+                        <h6 class="error">Informações inválidas, tente novamente.</h6>
+                    <?php
                 }
-                else{
-                    echo "Nome de usuário já utilizado.";
-                }
-
             }
         ?>
 </body>

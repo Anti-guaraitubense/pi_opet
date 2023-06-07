@@ -197,8 +197,8 @@ body *{
 
 .error{
     position: absolute;
-    top: 45%;
-    left: 63.5%;
+    top: 51%;
+    left: 13.5%;
     color: red;
     animation: fadeIn 0.5s;
 }
