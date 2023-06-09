@@ -1,14 +1,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+*,
+*::before,
+*::after{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
 
-.body{
-    font-family: 'Noto Sans', sans-serif;
+:root{
+	--body-font-color: #f0ffffde;
+	--light-color: #fff;
+	--dark-color: #2f2841;
+	--dark-color-lighter: #514869;
+	--section-background-color: #201b2c;
+}
+
+body{
+	font-size: 1.4rem;
+	font-family: 'Noto Sans', sans-serif;
+	font-weight: 400;
+	color: var(--body-font-color);
+	line-height: 1.5;
+	background: #201b2c;
+    
 }
 
 .bio-box{
 
     width: 500px;
     height: 100px;
-    background-color: red;
+    background-color: #2f2841;
     word-break: break-all;
 }
 
@@ -16,5 +37,9 @@
     width: 10vw;
     height: 13vh;
     border-radius: 20px;
-    border: 4px solid red;
+    border: 4px solid rgb(0, 255, 55);
+}
+
+.texto{
+    color: var(--body-font-color);
 }

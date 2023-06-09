@@ -35,7 +35,7 @@
 <body onload="evitar_dados_reload()";>
     <a href="index.php">Doasans</a>
     <?php 
-        echo "Você tem $info[score_user] pontos acumulados no site!";
+        echo "<div class='texto'>Você tem $info[score_user] pontos acumulados no site!</div>";
         ?>
             <img class="pfp" src="<?php echo $info_foto['url_foto'] ?>">
         <?php
@@ -53,7 +53,7 @@
                 else{
                     ?>
                         <h4>
-                            <?php echo "$info_bio[user_bio]"; ?>  
+                            <?php echo "<div class='texto'>$info_bio[user_bio]</div>"; ?>  
                         </h4>   
                         <button class="change-bio" name="change-bio">Alterar biografia</button>
                     <?php
