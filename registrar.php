@@ -23,7 +23,7 @@
                 <form action="registrar.php" method="post">
                 <div class="textfield">
                     <label for="email">E-mail</label>
-                    <input type="email" name="email" placeholder="E-mail" autocomplete="off">
+                    <input type="text" name="email" placeholder="E-mail" autocomplete="off">
                 </div>
                 <div class="textfield">
                     <label for="user">Usuário</label>
@@ -65,9 +65,37 @@
             if(isset($_POST['reg'])){
 
                 $email = $_POST['email'];
+                $email_valido = false;
                 $user = $_POST['user'];
+                $user_valido = false;
                 $pass = $_POST['pass'];
-                if(!($email == "" || $user == "" || $pass == "")){
+                $pass_valida = false;
+
+                #check de informações do email
+                $email_aceitos = ['gmail.com', 'outlook.com', 'yahoo.com'];
+                $email_check = explode('@', $email);
+                $email_check = end($email_check);
+                
+                if(in_array($email_check, $email_aceitos)){
+
+                    $email_valido = true;
+                }
+                
+                #check do usuario
+                $user = trim($user);
+
+                if(strlen($user) >= 0 && strlen($user) <= 15){ #limite de 15 caracteres
+                    if(ctype_alnum($user)){
+                        $user_valido = true;
+                    }
+                } 
+
+                #check da senha
+                if(strlen($pass) >= 0){
+                    $pass_valida = true;
+                }
+                
+                if($email_valido && $user_valido && $pass_valida){
 
                     $verif_nome = $conn->prepare('SELECT `nome_user` FROM `login` WHERE `nome_user` = :user;');
                     $verif_nome->bindValue(":user", $user);
