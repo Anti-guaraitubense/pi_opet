@@ -74,11 +74,12 @@
                 #check de informações do email
                 $email_aceitos = ['gmail.com', 'outlook.com', 'yahoo.com'];
                 $email_check = explode('@', $email);
-                $email_check = end($email_check);
-                
-                if(in_array($email_check, $email_aceitos)){
+                if(count($email_check) == 2){
+                    $email_check = end($email_check);
+                    if(in_array($email_check, $email_aceitos)){
 
-                    $email_valido = true;
+                        $email_valido = true;
+                    }
                 }
                 
                 #check do usuario
