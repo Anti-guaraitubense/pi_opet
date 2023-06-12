@@ -185,3 +185,33 @@ input {
 	box-shadow: 0 2rem 5rem rgba(0, 0, 0, .04);
 	border-radius: .8rem;
 }
+
+.search-input::placeholder{
+	font-weight: 500;
+	line-height: 1.4;
+	color: var(--dark-color);
+	transition: all .2s ease-in-out;
+}
+
+.search-input:focus::placeholder{
+	opacity: 0;
+}
+
+.cart-icon{
+	right: 2rem;
+}
+
+.cart-icon .path{
+	transition: all .25s;
+}
+
+.cart-icon:hover .path,
+.cart-icon:focus .path{
+	fill:var(--dark-color-lighter)
+}
+
+.cart-icon:hover .path.no-fill,
+.cart-icon:focus .path.no-fill {
+	fill: none;
+	stroke: var(--dark-color-lighter);
+}
