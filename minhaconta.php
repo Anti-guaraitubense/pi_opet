@@ -11,6 +11,18 @@
     $infos->execute();
 
     $info = $infos->fetch();
+    $perm = $info['user_perm'];
+    $perm_nome = "";
+    switch($perm){
+        case 1:
+            $perm_nome = "admin";
+            break;
+        case 2:
+            $perm_nome = "dono";
+            break;
+        default:
+            $perm = 0;
+    }
 
     $infos_bio = $conn->prepare('SELECT * FROM `bio` WHERE id_bio = :id');
     $infos_bio->bindValue(":id", $id_user_atual);
@@ -36,6 +48,9 @@
     <a href="index.php">Doasans</a>
     <?php 
         echo "<div class='texto'>Você tem $info[score_user] pontos acumulados no site!</div>";
+        if($perm != 0){
+            echo "<div class='texto'>Sua permissão é de nível $perm_nome, acesse aqui o site de <a href='controledoacao.php'>controle de doações</a></div>";
+        }
         ?>
             <img class="pfp" src="<?php echo $info_foto['url_foto'] ?>">
         <?php

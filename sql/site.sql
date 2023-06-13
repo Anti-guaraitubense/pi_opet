@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 06-Jun-2023 às 21:57
+-- Tempo de geração: 13-Jun-2023 às 02:35
 -- Versão do servidor: 10.4.27-MariaDB
 -- versão do PHP: 8.2.0
 
@@ -28,8 +28,23 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `bio` (
-  `id_bio` int(9) NOT NULL,
-  `user_bio` varchar(80) NOT NULL
+  `id_bio` int(11) NOT NULL,
+  `user_bio` varchar(120) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `doacao`
+--
+
+CREATE TABLE `doacao` (
+  `id_doacao` int(9) NOT NULL,
+  `nome_doacao` varchar(40) NOT NULL,
+  `img_doacao` varchar(40) NOT NULL,
+  `status_doacao` int(9) NOT NULL,
+  `user_doador` int(11) NOT NULL,
+  `validade_doacao` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -39,7 +54,7 @@ CREATE TABLE `bio` (
 --
 
 CREATE TABLE `fotoperfil` (
-  `id_foto` int(9) NOT NULL,
+  `id_foto` int(11) NOT NULL,
   `url_foto` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -50,12 +65,13 @@ CREATE TABLE `fotoperfil` (
 --
 
 CREATE TABLE `login` (
-  `id_user` int(9) NOT NULL,
-  `nome_user` varchar(20) NOT NULL,
-  `senha_user` varchar(40) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `nome_user` varchar(40) NOT NULL,
+  `senha_user` varchar(60) NOT NULL,
   `email_user` varchar(40) NOT NULL,
-  `status_user` int(1) NOT NULL,
-  `score_user` int(10) NOT NULL
+  `status_user` int(10) NOT NULL,
+  `score_user` int(10) NOT NULL,
+  `user_perm` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -67,6 +83,12 @@ CREATE TABLE `login` (
 --
 ALTER TABLE `bio`
   ADD PRIMARY KEY (`id_bio`);
+
+--
+-- Índices para tabela `doacao`
+--
+ALTER TABLE `doacao`
+  ADD PRIMARY KEY (`id_doacao`);
 
 --
 -- Índices para tabela `fotoperfil`
@@ -88,19 +110,25 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT de tabela `bio`
 --
 ALTER TABLE `bio`
-  MODIFY `id_bio` int(9) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_bio` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `doacao`
+--
+ALTER TABLE `doacao`
+  MODIFY `id_doacao` int(9) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `fotoperfil`
 --
 ALTER TABLE `fotoperfil`
-  MODIFY `id_foto` int(9) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_foto` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `login`
 --
 ALTER TABLE `login`
-  MODIFY `id_user` int(9) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
