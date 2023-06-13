@@ -16,7 +16,7 @@
     $info = $infosuser->fetch();
 
     if($info['user_perm'] <= 0){
-        header("location:minhaconta.php");
+        header("location:index.php");
         exit();
     }
 ?>
@@ -31,12 +31,75 @@
 </head>
 <body onload="evitar_dados_reload();">
 
-    <?php 
-        $count_doacao = $conn->prepare("SELECT * FROM `doacao` WHERE 1");
-        $count_doacao->execute();
+    <a href="index.php">Doasans</a>
 
-        while($row = $count_doacao->fetch()){
-            echo "$row[user_doador] - $row[nome_doacao] <br>";
+    <?php 
+        $count_doadores = $conn->prepare('SELECT * FROM `login` WHERE `doador_user` = 1');
+        $count_doadores->execute();
+        
+        if(isset($_GET['id'])){ 
+            if(isset($_GET['id_doacao'])){
+                echo "<a href='controledoacao.php?id=$_GET[id]'>Retornar</a>";
+                $doacao = $conn->prepare('SELECT * FROM `doacao` WHERE `id_doacao` = :id');
+                $doacao->bindValue("id", $_GET['id_doacao']);
+                $doacao->execute();
+                $row = $doacao->fetch();
+
+                $doador = $conn->prepare('SELECT * FROM `login` WHERE `id_user` = :id');
+                $doador->bindValue(":id", $row['user_doador']);
+                $doador->execute();
+
+                $row_user = $doador->fetch();
+
+                echo "<br><br>";
+                echo "<img src='$row[img_doacao]' style='width: 300px; height: 250px;'> Validade: $row[validade_doacao]";
+                echo "<br>Informações sobre o doador: <br>Usuário: $row_user[nome_user]<br>E-mail: $row_user[email_user]";
+
+                ?>
+                    <form action="controledoacao.php?id=<?php echo $_GET['id']?>&id_doacao=<?php echo $_GET['id_doacao']?>" method="post">
+                        <button style="color: green;" name="aceitar">Aceitar</button>
+                        <button style="color: red;" name="recusar">Recusar</button>
+                    </form>
+                <?php
+
+                if(isset($_POST['recusar'])){
+
+                    $recusar = $conn->prepare("UPDATE `doacao` SET `status_doacao` = 0 WHERE `id_doacao` = :id");
+                    $recusar->bindValue(":id", $_GET['id_doacao']);
+                    $recusar->execute();
+
+                    header("location:controledoacao.php?id=$_GET[id]");
+                }
+                exit();
+            }else{
+                echo "<a href='controledoacao.php'>Voltar</a>";
+
+                $count_doacao = $conn->prepare("SELECT * FROM `doacao` WHERE `user_doador` = :id AND `status_doacao` = 1");
+                $count_doacao->bindValue(":id", $_GET['id']);
+                $count_doacao->execute();
+
+                if($count_doacao->rowCount() == 0){
+                    $change = $conn->prepare('UPDATE `login` SET `doador_user` = 0 WHERE `id_user` = :id');
+                    $change->bindValue(":id", $_GET['id']);
+                    $change->execute();
+
+                    header("location:controledoacao.php");
+                }
+
+                while($row = $count_doacao->fetch()){
+                    echo "<br> <hr> $row[id_doacao] - $row[nome_doacao] - $row[validade_doacao] <br>";
+                    echo "<img src='$row[img_doacao]' style='width: 200px; height: 150px'>";
+                    echo "<a href='controledoacao.php?id=$_GET[id]&id_doacao=$row[id_doacao]'>Expandir</a>";
+                }
+            }
+        }else{
+            if($count_doadores->rowCount() > 0){
+                while($row = $count_doadores->fetch()){
+                    echo "<br><a href='controledoacao.php?id=$row[id_user]'>$row[nome_user]</a>";
+                }
+            }else{
+                echo "<br>Sem dados para ser exibido";
+            }
         }
     ?>
 </body>

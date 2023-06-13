@@ -49,7 +49,7 @@
     <?php 
         echo "<div class='texto'>Você tem $info[score_user] pontos acumulados no site!</div>";
         if($perm != 0){
-            echo "<div class='texto'>Sua permissão é de nível $perm_nome, acesse aqui o site de <a href='controledoacao.php'>controle de doações</a></div>";
+            echo "<div class='texto'>Sua permissão é de nível $perm_nome, acesse aqui o área de <a href='controledoacao.php'>controle de doações</a></div>";
         }
         ?>
             <img class="pfp" src="<?php echo $info_foto['url_foto'] ?>">

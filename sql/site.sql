@@ -71,7 +71,8 @@ CREATE TABLE `login` (
   `email_user` varchar(40) NOT NULL,
   `status_user` int(10) NOT NULL,
   `score_user` int(10) NOT NULL,
-  `user_perm` int(10) NOT NULL
+  `user_perm` int(10) NOT NULL,
+  `doador_user` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

@@ -19,6 +19,8 @@
     <script src="js/script.js"></script>
 </head>
 <body onload="evitar_dados_reload();">
+    <a href="index.php">Doasans</a>
+
     <form action="doacao.php" method="post" enctype="multipart/form-data">
         <div class="info-box">
             <input type="text" name="nome_prod" placeholder="Nome do produto">
@@ -30,9 +32,15 @@
     </form>
 
     <?php
+
         if(isset($_POST['submit'])){
 
             $validade = $_POST['validade_prod'];
+            $valarray = explode('-', $validade);
+            $valarray = array_reverse($valarray);
+            $valarray = join('/', $valarray);
+            $validade = $valarray;
+
             $nome = $_POST['nome_prod'];
 
             $renomear = true;
@@ -70,9 +78,18 @@
                         $doar->bindValue(":id", $id_user);
                         $doar->bindValue(":val", $validade);
                         $doar->execute();
+                        
+                        $change = $conn->prepare('UPDATE `login` SET `doador_user` = 1 WHERE `id_user` = :id');
+                        $change->bindValue(":id", $id_user);
+                        $change->execute();
+
+                        header("location:index.php");
                     }
+                    echo "Arquivo muito grande";
                 }
+                echo "Algo deu errado, tente novamente";
             }
+            echo "Extensão não suportada";
         }
     ?>
 
