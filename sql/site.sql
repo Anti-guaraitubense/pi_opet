@@ -46,6 +46,7 @@ CREATE TABLE `doacao` (
   `user_doador` int(11) NOT NULL,
   `validade_doacao` varchar(40) NOT NULL,
   `data_doacao` varchar(40) NOT NULL,
+  `id_avaliador` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------

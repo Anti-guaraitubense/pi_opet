@@ -15,9 +15,12 @@
     $perm_nome = "";
     switch($perm){
         case 1:
-            $perm_nome = "admin";
+            $perm_nome = "avaliador";
             break;
         case 2:
+            $perm_nome = "administrador";
+            break;
+        case 3:
             $perm_nome = "dono";
             break;
         default:

@@ -43,55 +43,58 @@
 
             $nome = $_POST['nome_prod'];
 
-            $renomear = true;
-            $pasta = 'img/doacoes/';
-
-            $arq = $_FILES['foto_prod'];
-            $arqnome = $_FILES['foto_prod']['name'];
-            $arqnometemp = $_FILES['foto_prod']['tmp_name'];
-            $tamanhoarq = $_FILES['foto_prod']['size'];
-            $arqerro = $_FILES['foto_prod']['error'];
-            $tipoarq = $_FILES['foto_prod']['type'];
-            
-            $arqext = explode('.', $arqnome);
-            $arqext = end($arqext);
-            $arqext = strtolower($arqext);
-            $extfinal = '.'.$arqext;
-
-            $tamanhomax = 1024*1024*2; // 2mb
-
-            $allowext = array('png', 'jpg', 'jpeg');
-
-            if(in_array($arqext, $allowext)){
-                if($arqerro == 0){
-                    if($tamanhoarq <= $tamanhomax){
-
-                        $arq_novonome = ($renomear == true) ? time().$extfinal : $arqnome.$extfinal;
-                        
-                        $destino = $pasta.$arq_novonome;
-
-                        move_uploaded_file($arqnometemp, $destino);
-
-                        $doar = $conn->prepare('INSERT INTO `doacao` (nome_doacao, img_doacao, status_doacao, user_doador, validade_doacao, data_doacao)
-                                                VALUES (:nome, :urlfoto, 1, :id, :val, :data_doacao)');
-                        $doar->bindValue(":nome", $nome);
-                        $doar->bindValue(":urlfoto", $destino);
-                        $doar->bindValue(":id", $id_user);
-                        $doar->bindValue(":val", $validade);
-                        $doar->bindvalue(":data_doacao", date('d/m/Y'));
-                        $doar->execute();
-                        
-                        $change = $conn->prepare('UPDATE `login` SET `doador_user` = 1 WHERE `id_user` = :id');
-                        $change->bindValue(":id", $id_user);
-                        $change->execute();
-
-                        header("location:index.php");
+            if(!$validade == "" && !$_FILES['foto_prod']['name'] == "" && !$nome == ""){
+                $renomear = true;
+                $pasta = 'img/doacoes/';
+    
+                $arq = $_FILES['foto_prod'];
+                $arqnome = $_FILES['foto_prod']['name'];
+                $arqnometemp = $_FILES['foto_prod']['tmp_name'];
+                $tamanhoarq = $_FILES['foto_prod']['size'];
+                $arqerro = $_FILES['foto_prod']['error'];
+                $tipoarq = $_FILES['foto_prod']['type'];
+                
+                $arqext = explode('.', $arqnome);
+                $arqext = end($arqext);
+                $arqext = strtolower($arqext);
+                $extfinal = '.'.$arqext;
+    
+                $tamanhomax = 1024*1024*2; // 2mb
+    
+                $allowext = array('png', 'jpg', 'jpeg');
+    
+                if(in_array($arqext, $allowext)){
+                    if($arqerro == 0){
+                        if($tamanhoarq <= $tamanhomax){
+    
+                            $arq_novonome = ($renomear == true) ? time().$extfinal : $arqnome.$extfinal;
+                            
+                            $destino = $pasta.$arq_novonome;
+    
+                            move_uploaded_file($arqnometemp, $destino);
+    
+                            $doar = $conn->prepare('INSERT INTO `doacao` (nome_doacao, img_doacao, status_doacao, user_doador, validade_doacao, data_doacao)
+                                                    VALUES (:nome, :urlfoto, 1, :id, :val, :data_doacao)');
+                            $doar->bindValue(":nome", $nome);
+                            $doar->bindValue(":urlfoto", $destino);
+                            $doar->bindValue(":id", $id_user);
+                            $doar->bindValue(":val", $validade);
+                            $doar->bindvalue(":data_doacao", date('d/m/Y'));
+                            $doar->execute();
+                            
+                            $change = $conn->prepare('UPDATE `login` SET `doador_user` = 1 WHERE `id_user` = :id');
+                            $change->bindValue(":id", $id_user);
+                            $change->execute();
+    
+                            header("location:index.php");
+                        }
+                        echo "Arquivo muito grande";
                     }
-                    echo "Arquivo muito grande";
+                    echo "Algo deu errado, tente novamente";
                 }
-                echo "Algo deu errado, tente novamente";
+                echo "Extensão não suportada";
             }
-            echo "Extensão não suportada";
+            echo "Informações invalidas";
         }
     ?>
 

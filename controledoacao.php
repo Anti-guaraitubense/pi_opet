@@ -64,10 +64,21 @@
 
                 if(isset($_POST['recusar'])){
 
-                    $recusar = $conn->prepare("UPDATE `doacao` SET `status_doacao` = 0 WHERE `id_doacao` = :id");
+                    $recusar = $conn->prepare("UPDATE `doacao` SET `status_doacao` = 0, `id_validador` = :id_val WHERE `id_doacao` = :id");
                     $recusar->bindValue(":id", $_GET['id_doacao']);
+                    $recusar->bindValue(":id_val", $user_id);
                     $recusar->execute();
 
+                    header("location:controledoacao.php?id=$_GET[id]");
+                }
+
+                if(isset($_POST['aceitar'])){
+
+                    $aceitar = $conn->prepare('UPDATE `doacao` SET `status_doacao` = 2, `id_validador` = :id_val WHERE `id_doacao` = :id');
+                    $aceitar->bindValue(":id", $_GET['id_doacao']);
+                    $aceitar->bindValue(":id_val", $user_id);
+                    $aceitar->execute();
+                    
                     header("location:controledoacao.php?id=$_GET[id]");
                 }
                 exit();
