@@ -44,7 +44,8 @@ CREATE TABLE `doacao` (
   `img_doacao` varchar(40) NOT NULL,
   `status_doacao` int(9) NOT NULL,
   `user_doador` int(11) NOT NULL,
-  `validade_doacao` varchar(40) NOT NULL
+  `validade_doacao` varchar(40) NOT NULL,
+  `data_doacao` varchar(40) NOT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------

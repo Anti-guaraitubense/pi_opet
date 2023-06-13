@@ -87,7 +87,7 @@
                 }
 
                 while($row = $count_doacao->fetch()){
-                    echo "<br> <hr> $row[id_doacao] - $row[nome_doacao] - $row[validade_doacao] <br>";
+                    echo "<br> <hr> $row[id_doacao] - $row[nome_doacao] - $row[data_doacao] <br>";
                     echo "<img src='$row[img_doacao]' style='width: 200px; height: 150px'>";
                     echo "<a href='controledoacao.php?id=$_GET[id]&id_doacao=$row[id_doacao]'>Expandir</a>";
                 }

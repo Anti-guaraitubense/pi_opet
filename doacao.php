@@ -72,11 +72,13 @@
 
                         move_uploaded_file($arqnometemp, $destino);
 
-                        $doar = $conn->prepare('INSERT INTO `doacao` (nome_doacao, img_doacao, status_doacao, user_doador, validade_doacao) VALUES (:nome, :urlfoto, 1, :id, :val)');
+                        $doar = $conn->prepare('INSERT INTO `doacao` (nome_doacao, img_doacao, status_doacao, user_doador, validade_doacao, data_doacao)
+                                                VALUES (:nome, :urlfoto, 1, :id, :val, :data_doacao)');
                         $doar->bindValue(":nome", $nome);
                         $doar->bindValue(":urlfoto", $destino);
                         $doar->bindValue(":id", $id_user);
                         $doar->bindValue(":val", $validade);
+                        $doar->bindvalue(":data_doacao", date('d/m/Y'));
                         $doar->execute();
                         
                         $change = $conn->prepare('UPDATE `login` SET `doador_user` = 1 WHERE `id_user` = :id');
