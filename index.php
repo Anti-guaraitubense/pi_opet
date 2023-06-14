@@ -5,6 +5,13 @@
     if(isset($_SESSION['id'])){
         $logado = true;
         $id_user_atual = $_SESSION['id'];
+        
+
+        if(isset($_GET['logout'])){
+            session_destroy();
+            header("location:index.php");
+            exit();   
+        }
     }
 ?>
 
@@ -27,9 +34,19 @@
             <li><a href="#home" class="active ">Inicío</a></li>
             <li><a href="#about">Sobre</a></li>
             <li><a href="doacao.php">Faça Sua Doação</a></li>
-            <li><a href="login.php">Login</a></li>
-            <li><a href="registrar.php">Registrar</a></li>
-            <li><a href="#home">Logout</a></li>
+            <?php
+            if($logado){
+                ?>
+                <li><a href="minhaconta.php">Sua conta  </a></li>
+                <li><a href="index.php?logout">Logout</a></li>
+                <?php
+            }else{
+                ?>
+                <li><a href="login.php">Login</a></li>
+                <li><a href="registrar.php">Registrar</a></li>
+                <?php
+            }
+            ?>
         </ul>
 
         <div class="nav-icons">
@@ -64,7 +81,9 @@
             $info = $infos->fetch();
             $nome_fix = ucfirst($info['nome_user']);
 
-            echo "<h1> Bem vindo(a), $nome_fix!";
+            ?>
+                <h1>Bem vindo(a) <?php echo $nome_fix?></h1>
+            <?php
         }
     ?>
 </body>
