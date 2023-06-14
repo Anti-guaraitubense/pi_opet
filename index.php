@@ -28,7 +28,7 @@
 </head>
 <body onload="evitar_dados_reload()";>
     <header>
-        <a href="#" class="logo"><i class='bx bxs-home'></i>Doasans</a>
+        <a href="#" class="logo"><i class='bx bxs-package'></i></i>Doasans</a>
         
         <ul class="navlist">
             <li><a href="#home" class="active ">Inicío</a></li>
@@ -55,6 +55,20 @@
             <div class="bx bx-menu" id="menu-icon"></div>
         </div>
     </header>
+
+    <section class="home" id="home">
+        <div class="home-text">
+            <h1>Doe, <span>Ajude &</span> <br> Faça uma Boa <br> ação</h1>
+            <a href="#" class="btn">Faça sua Doação<i class='bx bxs-right-arrow'></i></a>
+            <a href="#" class="btn2">Peça uma Doação</a>
+        </div>
+
+        <div class="home-img">
+            <img src="img/delivery.svg">
+            
+        </div>
+
+    </section>
     
     
 
