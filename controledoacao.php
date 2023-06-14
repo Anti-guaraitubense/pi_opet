@@ -14,11 +14,13 @@
     $infosuser->execute();
 
     $info = $infosuser->fetch();
-
-    if($info['user_perm'] <= 0){
+    $perm = $info['user_perm'];
+    
+    if($perm <= 0){
         header("location:index.php");
         exit();
     }
+
 ?>
 
 <!DOCTYPE html>
@@ -77,6 +79,10 @@
                     $aceitar = $conn->prepare('UPDATE `doacao` SET `status_doacao` = 2, `id_validador` = :id_val WHERE `id_doacao` = :id');
                     $aceitar->bindValue(":id", $_GET['id_doacao']);
                     $aceitar->bindValue(":id_val", $user_id);
+                    $aceitar->execute();
+
+                    $aceitar = $conn->prepare('UPDATE `login` SET `posdoador_user` = 1 WHERE `id_user` = :id');
+                    $aceitar->bindValue(":id", $_GET['id']);
                     $aceitar->execute();
                     
                     header("location:controledoacao.php?id=$_GET[id]");

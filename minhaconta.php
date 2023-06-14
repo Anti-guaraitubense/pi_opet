@@ -51,8 +51,11 @@
     <a href="index.php">Doasans</a>
     <?php 
         echo "<div class='texto'>Você tem $info[score_user] pontos acumulados no site!</div>";
-        if($perm != 0){
+        if($perm > 0){
             echo "<div class='texto'>Sua permissão é de nível $perm_nome, acesse aqui o área de <a href='controledoacao.php'>controle de doações</a></div>";
+            if($perm == 2){
+                echo "<div class='texto'>E acesse aqui o <a href='posdoacao.php'>painel de pós doação</a></div>";
+            }
         }
         ?>
             <img class="pfp" src="<?php echo $info_foto['url_foto'] ?>">
