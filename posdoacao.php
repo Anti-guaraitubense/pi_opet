@@ -42,6 +42,9 @@
         $count_doadores = $conn->prepare('SELECT * FROM `login` WHERE `posdoador_user` = 1');
         $count_doadores->execute();
 
+        if($count_doadores->rowCount() == 0){
+            echo "Sem informações para serem mostradas";
+        }
 
         if(isset($_GET['id'])){
             $count_doacoes = $conn->prepare('SELECT * FROM `doacao` WHERE `user_doador` = :id AND `status_doacao` = 2');
@@ -91,7 +94,55 @@
                 }
 
                 if(isset($_POST['aceitar'])){
-                    echo "aceito!";
+
+                    ?>
+                        <p>Quantos pontos essa doação merece?</p>
+                        <form action="" method="post">
+                            <input type="number" name="val-pontos">
+                            <input type="submit" name="sub-pontos">
+                        </form>
+                    <?php
+                }
+
+                if(isset($_POST['sub-pontos'])){
+
+                    $get_ponto = $conn->prepare('SELECT `score_user` FROM `login` WHERE `id_user` = :id');
+                    $get_ponto->bindValue(":id", $_GET['id']);
+                    $get_ponto->execute();
+                    $pt = $get_ponto->fetch();
+                    
+                    $pontos_add = $_POST['val-pontos'];
+                    $pontos_add = intval($pontos_add);
+
+                    $ponto_final = $pt['score_user'] + $pontos_add;
+
+                    echo "$ponto_final - $_GET[id] - $_GET[id_doacao]";
+
+                    $alter = $conn->prepare("UPDATE `login` SET `score_user` = :ponto WHERE `id_user` = :id;");
+                    $alter->bindValue(":ponto", $ponto_final);
+                    $alter->bindValue(":id", $_GET['id']);
+                    $alter->execute();
+
+                    # setando doacao e user
+                    $del_doacao = $conn->prepare("UPDATE `doacao` SET `status_doacao` = 0 WHERE `id_doacao` = :idd");
+                    $del_doacao->bindValue(":idd", $_GET['id_doacao']);
+                    $del_doacao->execute();
+
+                    $check_pos = $conn->prepare('SELECT * from `doacao` WHERE `user_doador` = :id AND `status_doacao` = 2');
+                    $check_pos->bindValue(":id", $_GET['id']);
+                    $check_pos->execute();
+
+                    if($check_pos->rowCount() == 0){
+
+                        $alter_user = $conn->prepare('UPDATE `login` SET `posdoador_user` = 0 WHERE `id_user` = :id');
+                        $alter_user->bindValue(":id", $_GET['id']);
+                        $alter_user->execute();
+                        header("location:posdoacao.php");
+                        exit();
+                    }
+                    
+                    header("location:posdoacao.php?id=$_GET[id]");
+                    exit();
                 }
                 exit();
             }else{
