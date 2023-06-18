@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="js/script.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
 </head>
 <body onload="evitar_dados_reload()";>
     <header>
@@ -88,7 +89,7 @@
 
     <section class="about" id="about">
         <div class="about-img">
-            <img src="#">
+            <img src="img/ajuda.svg">
         </div>
         <div class="about-text">
             <h2>Sempre pensando nos próximos.<br>Faça o mesmo você também!</h2>
@@ -162,8 +163,48 @@
             </div>
         </div>
     </section>
-    
 
+    <section class="contact" id="contact">
+        <div class="contact-content">
+            <div class="contact-text">
+                <h2>Redes Sociais</h2>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                <div class="social">
+                    <a href="#" class="clr"><i class='bx bxl-instagram'></i></a>
+                    <a href="#"><i class='bx bxl-facebook-circle'></i></a>
+                    <a href="#"><i class='bx bxl-twitter'></i></a>
+                    <a href="#"><i class='bx bxl-gmail'></i></a>
+                    <a href="#"><i class='bx bxl-github'></i></a>
+                </div>
+            </div>
+            <div class="details">
+                <div class="main-d">
+                    <a href="#"><i class='bx bx-user'></i>Gustavo Walk</a>
+                </div>
+                <div class="main-d">
+                    <a href="#"><i class='bx bx-user'></i>Luiz Weinhardt</a>
+                </div>
+                <div class="main-d">
+                    <a href="#"><i class='bx bx-user'></i>Luis Ludwig</a>
+                </div>
+                <div class="main-d">
+                    <a href="#"><i class='bx bx-user'></i>Gabriel Menegaço</a>
+                </div>
+            </div>
+            <div class="contact-img">
+                <div class="c-one">
+                    <img src="img/playstore.png">
+                </div>
+                <div class="c-one">
+                    <img src="img/applestore.png">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <a href="#" class="scroll"><i class='bx bx-up-arrow-alt'></i></a>
+    
+    
     <?php
         if(isset($_POST['my-acc'])){
 
