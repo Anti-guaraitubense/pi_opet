@@ -14,6 +14,7 @@
 	--other-color: #2f2841;
 	--second-color: #514869;
 	--bg-color: #201b2c;;
+	--link-color: #00ffc8;
 	
 	--big-font: 4.5rem;
 	--h2-font: 2.6rem;
@@ -147,19 +148,83 @@ p{
 }
 
 .bio-box{
-    width: 500px;
-    height: 100px;
+	position: fixed;
+	width: 200px;
+	top: 36vh;
+	left: 57.5vw;
     background-color: #2f2841;
     word-break: break-all;
+}
+
+.bio-text{
+	color: var(--text-color);
 }
 
 .pfp{
     width: 10vw;
     height: 13vh;
-    border-radius: 20px;
-    border: 4px solid rgb(0, 255, 55);
+    border-radius: 15px;
+    border: 4px solid var(--main-color);
 }
 
 .texto{
     color: var(--body-font-color);
+}
+
+.page-link{
+	color: var(--link-color);
+	text-decoration: none;
+}
+
+.error-text{
+	position: fixed;
+	color: #f01f1f;
+	top: 32.5vh;
+	width: 90px;
+	left: 58vw;
+	word-break: break-all;
+}
+
+.btn-pfp{
+	position: fixed;
+	top: 33vh;
+	left: 64vw;
+}
+
+.input-pfp{
+	width: 120px;
+	display: none;
+}
+
+.input-bio{
+	background-color: var(--other-color);
+	border: solid 2px var(--main-color);
+	border-radius: 5px;
+	color: var(--text-color);
+	width: 200px;
+}
+
+label{
+	position: fixed;
+	top: 32.3vh;
+	left: 58vw;
+    color: var(--link-color);
+	font-size: 15px;
+    display: block;
+    cursor: pointer;
+}
+
+.btn-bio{
+	color: var(--main-color);
+}
+
+.btn-change-bio{
+	top: 40vh;
+	left: 62.5vw;
+}
+
+.btn-change-pfp{
+	position: fixed;
+	top: 33vh;
+	left: 63.5vw;
 }

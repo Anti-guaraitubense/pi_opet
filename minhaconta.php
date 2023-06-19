@@ -45,6 +45,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Minha conta</title>
+    <script src="js/script.js"></script>
     <link rel="stylesheet" href="css/minhaconta.css" type="text/css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.3.0/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
@@ -86,9 +87,9 @@
                 <?php 
                 if($perm > 0){
                     echo "<h2>Permissão</h2>";
-                    echo "<p>Sua permissão é de nível $perm_nome, acesse aqui o área de <a href='controledoacao.php'>controle de doações</a></p>";
-                if($perm == 2){
-                    echo "<p>E acesse aqui o <a href='posdoacao.php'>painel de pós doação</a></p>";
+                    echo "<p>Sua permissão é de nível $perm_nome, acesse aqui a área do <a href='controledoacao.php' class='page-link'>painel de doações</a></p>";
+                if($perm >= 2){
+                    echo "<p>E acesse aqui o <a href='posdoacao.php' class='page-link'>painel de pós doação</a></p>";
             }
         }
         ?>
@@ -97,14 +98,14 @@
                         <?php 
                             if(isset($_POST['change-bio'])){
                         ?>
-                        <input type="text" name="new-bio" placeholder="Nova biografia" autocomplete="off" value="<?php echo "$info_bio[user_bio]"; ?>">
-                        <button class="confirm-bio" name="confirm-bio">Salvar alterações</button>
+                        <input type="text" name="new-bio" placeholder="Nova biografia" autocomplete="off" value="<?php echo "$info_bio[user_bio]"; ?>" class="input-bio">
+                        <button class="btn btn-bio" name="confirm-bio">Salvar alterações</button>
                     <?php
                 }
                 else{
                     ?>
                         <h4>
-                            <?php echo "<div class='texto'>$info_bio[user_bio]</div>"; ?>  
+                            <?php echo "<div class='bio-text'>$info_bio[user_bio]</div>"; ?>  
                         </h4>   
                         <button class="btn" name="change-bio">Alterar biografia</button>
                     <?php
@@ -119,9 +120,22 @@
                 }
             ?>
                     </form>
+                </div>
+                <div class="pfp-box">
                     <form action="minhaconta.php" method="post" enctype="multipart/form-data">
-                            <input type="file" name="pfp">
-                            <button class="btn" type="submit" name="submit">Carregar foto</button>
+                            <?php 
+                                if(isset($_POST['change-pfp'])){
+                                    ?>
+                                    <label for="pfp">Arquivo</label>
+                                    <input type="file" class="input-pfp" name="pfp" id="pfp">
+                                    <button class="btn btn-change-pfp" type="submit" name="submit">Carregar foto</button>
+                                    <?php
+                                }else{
+                                    ?>
+                                    <button class="btn btn-pfp" type="submit" name="change-pfp">Alterar foto</button>
+                                    <?php
+                                }
+                            ?>
                     </form>
                 </div>
             </div>
@@ -150,32 +164,34 @@
             $tamanhomax = 1024*1024*2; // 2mb
 
             $allowext = array('png', 'jpg', 'jpeg');
+            
+            if($tipoarq != "" && $arqnome != ""){
+                if(in_array($arqext, $allowext)){
+                    if($arqerro == 0){
+                        if($tamanhoarq < $tamanhomax){
+                            $arq_novonome = ($renomear == true) ? time().$extfinal : $arqnome.$extfinal;
 
-            if(in_array($arqext, $allowext)){
-                if($arqerro == 0){
-                    if($tamanhoarq < $tamanhomax){
-                        $arq_novonome = ($renomear == true) ? time().$extfinal : $arqnome.$extfinal;
+                            $destino = $pasta.$arq_novonome;
 
-                        $destino = $pasta.$arq_novonome;
+                            move_uploaded_file($arqnometemp, $destino);
 
-                        move_uploaded_file($arqnometemp, $destino);
+                            $alt_foto = $conn->prepare('UPDATE `fotoperfil` SET `url_foto` = :urlfoto WHERE id_foto = :id');
+                            $alt_foto->bindValue(":id", $id_user_atual);
+                            $alt_foto->bindValue(":urlfoto", $destino);
+                            $alt_foto->execute();
 
-                        $alt_foto = $conn->prepare('UPDATE `fotoperfil` SET `url_foto` = :urlfoto WHERE id_foto = :id');
-                        $alt_foto->bindValue(":id", $id_user_atual);
-                        $alt_foto->bindValue(":urlfoto", $destino);
-                        $alt_foto->execute();
-
-                        header("location:minhaconta.php");
+                            header("location:minhaconta.php");
+                        }else{
+                            echo "<h5 class='error-text'>Arquivo muito grande</h5>";
+                        }
                     }else{
-                        echo "Arquivo muito grande";
+                        echo "<h5 class='error-text'>Algo deu errado, tente novamente</h5>";
                     }
                 }else{
-                    echo "Algo deu errado, tente novamente";
+                    echo "<h5 class='error-text'>Extensão não suportada</h5>";
                 }
-            }else{
-                echo "Extensão não suportada";
             }
-        }
+    }
 
     ?>
 </body>
