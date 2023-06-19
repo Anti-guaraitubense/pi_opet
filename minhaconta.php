@@ -1,5 +1,6 @@
 <?php 
     include_once 'config.php';
+    include_once 'functions.php';
     session_start();
     if(!isset($_SESSION['id'])){
         header("location:index.php");
@@ -80,10 +81,44 @@
                 <?php 
                 echo "<p>Você tem $info[score_user] pontos acumulados no site!</p>"
                 ?>
-                <h2>Senha</h2>
-                <p>******<button class="btn">Alterar</button></p>
-                <h2>Telefone</h2>
-                <p>Insira seu Número de Telefone<button class="btn">Alterar</button></p>
+                <form action="minhaconta.php" method="post">
+                    <h2>CPF</h2>
+                    <?php
+                        if($info['cpf_user'] == 0){
+                            if(isset($_POST['change_cpf'])){
+                                ?>
+                                    <p><input type="number" name="cpf"> <input type="submit" value="enviar" name="sub_cpf"></p>
+                                <?php
+                            }else{
+                                ?>
+                                    <p>***-***-***.**<button class="btn" name="change_cpf">Alterar</button></p>
+                                <?php
+                            }
+                        }else{
+                            $cpf_user =  $info['cpf_user'];
+                            $cpf_user = array_map('intval', str_split($cpf_user));
+                            
+                            echo "<p>$cpf_user[0]$cpf_user[1]$cpf_user[2]-***-***.**</p>";
+                        }
+                        if(isset($_POST['sub_cpf'])){
+                            $cpf = $_POST['cpf'];
+                            $checkcpf = check_cpf($cpf);
+                            
+                            if(check_cpf($cpf) == true){
+                                $change_cpf = $conn->prepare('UPDATE `login` SET `cpf_user` = :cpf WHERE `id_user` = :id');
+                                $change_cpf->bindValue(":cpf", $cpf);
+                                $change_cpf->bindValue(":id", $id_user_atual);
+                                $change_cpf->execute();
+
+                                header("location:minhaconta.php");
+                            }else{
+                                echo "cpf invalido";
+                            }
+                        }
+                    ?>
+                    <h2>Telefone</h2>
+                    <p>Insira seu Número de Telefone<button class="btn">Alterar</button></p>
+                </form>
                 <?php 
                 if($perm > 0){
                     echo "<h2>Permissão</h2>";
@@ -141,9 +176,8 @@
             </div>
         </div>
     </div>
-        <?php
-    ?>
     <?php 
+        
         if(isset($_POST['submit'])){
             $renomear = true;
             $pasta = 'img/pfp/';
