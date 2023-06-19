@@ -41,32 +41,62 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt_BR">
 <head>
     <meta charset="UTF-8">
     <title>Minha conta</title>
     <link rel="stylesheet" href="css/minhaconta.css" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.3.0/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 </head>
 <body onload="evitar_dados_reload()";>
-    <a href="index.php">Doasans</a>
-    <?php 
-        echo "<div class='texto'>Você tem $info[score_user] pontos acumulados no site!</div>";
-        if($perm > 0){
-            echo "<div class='texto'>Sua permissão é de nível $perm_nome, acesse aqui o área de <a href='controledoacao.php'>controle de doações</a></div>";
-            if($perm == 2){
-                echo "<div class='texto'>E acesse aqui o <a href='posdoacao.php'>painel de pós doação</a></div>";
+    <div class="container">
+        <div id="logo">
+            <h1 class="logo">Doasans</h1>
+            <div class="CTA">
+                <div class="img-box">
+                <img class="pfp" src="<?php echo $info_foto['url_foto'] ?>">
+                </div>
+            </div>
+        </div>
+        <div class="leftbox">
+            <nav>
+                <a href="#" class="active"><i class='bx bxs-user'></i></a>
+                <a href="#" class="active"><i class='bx bxs-credit-card'></i></a>
+                <a href="#" class="active"><i class='bx bxs-cog'></i></a>
+                <a href="index.php" class="active"><i class='bx bx-arrow-back'></i></a>
+                
+            </nav>
+        </div>
+        <div class="rightbox">
+            <div class="profile">
+                <h1>Informações Pessoais</h1>
+                <h2>Usuário</h2>
+                <?php 
+                echo "<p>$info[nome_user]</p>"
+                ?>
+                <h2>Pontuação</h2>
+                <?php 
+                echo "<p>Você tem $info[score_user] pontos acumulados no site!</p>"
+                ?>
+                <h2>Senha</h2>
+                <p>******<button class="btn">Alterar</button></p>
+                <h2>Telefone</h2>
+                <p>Insira seu Número de Telefone<button class="btn">Alterar</button></p>
+                <?php 
+                if($perm > 0){
+                    echo "<h2>Permissão</h2>";
+                    echo "<p>Sua permissão é de nível $perm_nome, acesse aqui o área de <a href='controledoacao.php'>controle de doações</a></p>";
+                if($perm == 2){
+                    echo "<p>E acesse aqui o <a href='posdoacao.php'>painel de pós doação</a></p>";
             }
         }
         ?>
-            <img class="pfp" src="<?php echo $info_foto['url_foto'] ?>">
-        <?php
-    ?>
-    <div class="bio-box">
-        <form action="minhaconta.php" method="post">
-            <?php 
-                if(isset($_POST['change-bio'])){
-
-                    ?>
+                <div class="bio-box">
+                    <form action="minhaconta.php" method="post">
+                        <?php 
+                            if(isset($_POST['change-bio'])){
+                        ?>
                         <input type="text" name="new-bio" placeholder="Nova biografia" autocomplete="off" value="<?php echo "$info_bio[user_bio]"; ?>">
                         <button class="confirm-bio" name="confirm-bio">Salvar alterações</button>
                     <?php
@@ -76,7 +106,7 @@
                         <h4>
                             <?php echo "<div class='texto'>$info_bio[user_bio]</div>"; ?>  
                         </h4>   
-                        <button class="change-bio" name="change-bio">Alterar biografia</button>
+                        <button class="btn" name="change-bio">Alterar biografia</button>
                     <?php
                 }
                 if(isset($_POST['confirm-bio'])){
@@ -88,14 +118,17 @@
                     header("location:minhaconta.php");
                 }
             ?>
-        </form>
+                    </form>
+                    <form action="minhaconta.php" method="post" enctype="multipart/form-data">
+                            <input type="file" name="pfp">
+                            <button class="btn" type="submit" name="submit">Carregar foto</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <form action="minhaconta.php" method="post" enctype="multipart/form-data">
-        <input type="file" name="pfp">
-        <button type="submit" name="submit">Carregar foto</button>
-    </form>
-
+        <?php
+    ?>
     <?php 
         if(isset($_POST['submit'])){
             $renomear = true;

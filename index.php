@@ -229,7 +229,6 @@
             $nome_fix = ucfirst($info['nome_user']);
 
             ?>
-                <h1>Bem vindo(a) <?php echo $nome_fix?></h1>
             <?php
         }
     ?>

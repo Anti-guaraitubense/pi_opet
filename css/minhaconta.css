@@ -8,25 +8,145 @@
 }
 
 :root{
-	--body-font-color: #f0ffffde;
-	--light-color: #fff;
-	--dark-color: #2f2841;
-	--dark-color-lighter: #514869;
-	--section-background-color: #201b2c;
+	--main-color: #00ff88;
+	--text-color: #f0ffffde;
+	--text-color2: #2b134b;
+	--other-color: #2f2841;
+	--second-color: #514869;
+	--bg-color: #201b2c;;
+	
+	--big-font: 4.5rem;
+	--h2-font: 2.6rem;
+	--p-font: 1.1rem;
 }
 
 body{
-	font-size: 1.4rem;
 	font-family: 'Noto Sans', sans-serif;
-	font-weight: 400;
-	color: var(--body-font-color);
-	line-height: 1.5;
-	background: #201b2c;
-    
+	background: var(--bg-color);
+	overflow: hidden;
+    box-sizing: border-box;
+}
+
+.container{
+	background: var(--other-color);
+	width: 700px;
+	height: 630px;
+	margin: 0 auto;
+	position: relative;
+	margin-top: 7%;
+	box-shadow: 2px 5px 20px rgba(119, 119, 119, 0.5);
+	border-radius: 20px;
+}
+
+.logo{
+	float: right;
+	margin-right: 12px;
+	margin-top: 12px;
+	color: var(--main-color);
+	font-weight: 900;
+	font-size: 1.5rem;
+	letter-spacing: 1px;
+}
+
+.CTA{
+	width: 80px;
+	height: 40px;
+	float: right;
+	right: 120px;
+	bottom: 450px;
+	margin-bottom: 90px;
+	position: absolute;
+	z-index: 1;
+}
+
+.leftbox{
+	float: left;
+	top: -5%;
+	left: 5%;
+	position: absolute;
+	width: 15%;
+	height: 110%;
+	background: var(--second-color);
+	box-shadow: 3px 3px 10px rgba(119, 119, 119, 0.5);
+	padding: 10px;
+	border-radius: 20px;
+}
+
+nav a{
+	list-style: none;
+	padding: 35px;
+	padding-top: 85px;
+	color: var(--text-color);
+	font-size: 1.1em;
+	display: block;
+	transition: all 0.3s ease-in-out;
+}
+
+nav a:hover{
+	color: var(--main-color);
+	transform: scale(1.2);
+	cursor: pointer;
+}
+
+nav a:first-child{
+	margin-top: 7px;
+}
+
+.active{
+	color: var(--main-color);
+}
+
+.rightbox{
+	float: right;
+	width: 60%;
+	height: 100%;
+}
+
+.profile{
+	position: absolute;
+	width: 70%;
+	
+}
+
+h1{
+	color: var(--text-color);
+	font-size: 1em;
+	margin-top: 40px;
+	margin-bottom: 35px;
+}
+
+h2{
+	color: var(--main-color);
+	width: 80%;
+	text-transform: uppercase;
+	font-size: 20px;
+	letter-spacing: 1px;
+	margin-left: 2px;
+	padding-bottom: 5px;
+	padding-top: 12px;
+}
+
+p{
+	border-width: 1px;
+	border-style: solid;
+	border-image: linear-gradient(to right, #3fb7a8, rgba(126,211,134,0.5)) 1 0%;
+	border-top: 0;
+	width: 65%;
+	padding: 5px 0;
+	color: var(--text-color);
+	
+}
+
+.btn{
+	float: right;
+	text-transform: uppercase;
+	font-size: 10px;
+	border: none;
+	color: var(--main-color);
+	background-color: var(--other-color);
 }
 
 .bio-box{
-
     width: 500px;
     height: 100px;
     background-color: #2f2841;
