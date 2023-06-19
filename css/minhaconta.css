@@ -147,6 +147,11 @@ p{
 	background-color: var(--other-color);
 }
 
+.btn:hover{
+	text-decoration: underline;
+	font-weight: 900;
+}
+
 .bio-box{
 	position: fixed;
 	width: 200px;
