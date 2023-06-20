@@ -112,7 +112,7 @@
 
                                 header("location:minhaconta.php");
                             }else{
-                                echo "cpf invalido";
+                                echo "<h5 class='error-cpf'>CPF Inválido</h5>";
                             }
                         }
                     ?>
@@ -146,7 +146,7 @@
 
                                 header("location:minhaconta.php");
                             }else{
-                                echo "numero invalido";
+                                echo "<h5>Número Inválido</h5>";
                             }
                         }
                     ?>
@@ -184,7 +184,7 @@
 
                                     header("location:minhaconta.php");
                                 }else{
-                                    echo "CEP inválido";
+                                    echo "<h5>CEP inválido</h5>";
                                 }
                             }
                         }else{
