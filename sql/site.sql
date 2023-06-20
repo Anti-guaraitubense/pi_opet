@@ -76,7 +76,8 @@ CREATE TABLE `login` (
   `user_perm` int(10) NOT NULL,
   `doador_user` int(10) NOT NULL,
   `posdoador_user` int(10) NOT NULL,
-  `cpf_user` varchar(11) NOT NULL
+  `cpf_user` varchar(11) NOT NULL,
+  `cep_user` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

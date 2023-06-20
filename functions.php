@@ -31,4 +31,58 @@
             return false;
         }
     }
+
+    function check_num($num){
+
+        $num_array = array_map('intval', str_split($num));
+
+        if(count($num_array) == 11){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    function get_address($cep){
+
+        $ch = curl_init();
+        $link = "viacep.com.br/ws/$cep/json/";
+
+        curl_setopt($ch, CURLOPT_URL, $link);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $data = curl_exec($ch);
+
+        $texto = json_decode($data);
+
+        return $texto->logradouro;
+    }
+    function get_uf($cep){
+
+        $ch = curl_init();
+        $link = "viacep.com.br/ws/$cep/json/";
+
+        curl_setopt($ch, CURLOPT_URL, $link);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $data = curl_exec($ch);
+
+        $texto = json_decode($data);
+
+        return $texto->uf;
+    }
+    function get_district($cep){
+
+        $ch = curl_init();
+        $link = "viacep.com.br/ws/$cep/json/";
+
+        curl_setopt($ch, CURLOPT_URL, $link);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $data = curl_exec($ch);
+
+        $texto = json_decode($data);
+
+        return $texto->bairro;
+    }
 ?>

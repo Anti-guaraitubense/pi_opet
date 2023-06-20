@@ -84,14 +84,14 @@
                 <form action="minhaconta.php" method="post">
                     <h2>CPF</h2>
                     <?php
-                        if($info['cpf_user'] == 0){
+                        if($info['cpf_user'] == NULL){
                             if(isset($_POST['change_cpf'])){
                                 ?>
                                     <p><input type="number" name="cpf"> <input type="submit" value="enviar" name="sub_cpf"></p>
                                 <?php
                             }else{
                                 ?>
-                                    <p>***-***-***.**<button class="btn" name="change_cpf">Alterar</button></p>
+                                    <p>Insira seu CPF<button class="btn" name="change_cpf">Alterar</button></p>
                                 <?php
                             }
                         }else{
@@ -104,7 +104,7 @@
                             $cpf = $_POST['cpf'];
                             $checkcpf = check_cpf($cpf);
                             
-                            if(check_cpf($cpf) == true){
+                            if($checkcpf == true){
                                 $change_cpf = $conn->prepare('UPDATE `login` SET `cpf_user` = :cpf WHERE `id_user` = :id');
                                 $change_cpf->bindValue(":cpf", $cpf);
                                 $change_cpf->bindValue(":id", $id_user_atual);
@@ -117,7 +117,87 @@
                         }
                     ?>
                     <h2>Telefone</h2>
-                    <p>Insira seu Número de Telefone<button class="btn">Alterar</button></p>
+                    <?php
+                        if($info['nmr_user'] == NULL){
+                            if(isset($_POST['change_num'])){
+                                ?>
+                                    <p><input type="number" name="num" class="input-bio"> <input type="submit" value="enviar" name="sub_num" class="btn"></p>
+                                <?php
+                            }else{
+                                ?>
+                                    <p>Insira seu Número de Telefone<button class="btn" name="change_num">Alterar</button></p>
+                                <?php
+                            }
+                        }else{
+                            $num_user = $info['nmr_user'];
+                            $num_user = array_map('intval', str_split($num_user));
+
+                            echo "<p>($num_user[0]$num_user[1]) $num_user[2]$num_user[3]$num_user[4]$num_user[5]$num_user[6]-****</p>";
+                        }
+                        if(isset($_POST['sub_num'])){
+                            $num = $_POST['num'];
+                            $checknum = check_num($num);
+
+                            if($checknum == true){
+                                $change_num = $conn->prepare('UPDATE `login` SET `nmr_user` = :num WHERE `id_user` = :id');
+                                $change_num->bindValue(":num", $num);
+                                $change_num->bindValue(":id", $id_user_atual);
+                                $change_num->execute();
+
+                                header("location:minhaconta.php");
+                            }else{
+                                echo "numero invalido";
+                            }
+                        }
+                    ?>
+                    <h2>Endereço</h2>
+                    <?php 
+                        if($info['cep_user'] == NULL){
+                            if(isset($_POST['change_cep'])){
+                            ?>
+                                <p><input type="number" name="cep" class="input-bio"><input type="submit" value="enviar" name="sub_cep" class="btn"></p>
+                            <?php
+                            }else{
+                                ?>
+                                    <p>Insira seu CEP<button class="btn" name="change_cep">Alterar</button></p>
+                                <?php
+                            }
+                            if(isset($_POST['sub_cep'])){
+                                $cep = $_POST['cep'];
+
+                                $ch = curl_init();
+                                $link = "viacep.com.br/ws/$cep/json/";
+
+                                curl_setopt($ch, CURLOPT_URL, $link);
+                                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+                                $data = curl_exec($ch);
+
+                                $info_cep = json_decode($data);
+
+                                if($info_cep != NULL){
+                                    
+                                    $change_cep = $conn->prepare('UPDATE `login` SET `cep_user` = :cep WHERE `id_user` = :id');
+                                    $change_cep->bindValue(":cep", $cep);
+                                    $change_cep->bindValue(":id", $id_user_atual);
+                                    $change_cep->execute();
+
+                                    header("location:minhaconta.php");
+                                }else{
+                                    echo "CEP inválido";
+                                }
+                            }
+                        }else{
+
+                            $cep_user = $info['cep_user'];
+                            $endereco = get_address($cep_user);
+                            $endereco = mb_strimwidth($endereco, 0, 20, "...");
+                            $uf = get_uf($cep_user);
+                            $bairro = get_district($cep_user);
+                            
+                            echo "<p>$endereco - $bairro - $uf</p>";
+                        }
+                    ?>
                 </form>
                 <?php 
                 if($perm > 0){
