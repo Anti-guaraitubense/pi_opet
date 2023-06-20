@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Pedido de Doação</title>
+        <title>Doasans</title>
         <link rel="stylesheet" type="text/css" href="css/askdonate.css">
         <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
         <script src="js/donate.js"></script>

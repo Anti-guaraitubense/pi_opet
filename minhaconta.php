@@ -45,7 +45,7 @@
 <html lang="pt_BR">
 <head>
     <meta charset="UTF-8">
-    <title>Minha conta</title>
+    <title>Doasans</title>
     <script src="js/script.js"></script>
     <link rel="stylesheet" href="css/minhaconta.css" type="text/css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.3.0/remixicon.css" rel="stylesheet">
@@ -63,8 +63,8 @@
         </div>
         <div class="leftbox">
             <nav>
-                <a href="#" class="active"><i class='bx bxs-user'></i></a>
-                <a href="#" class="active"><i class='bx bxs-credit-card'></i></a>
+                <a href="minhaconta.php" class="active"><i class='bx bxs-user'></i></a>
+                <a href="card.php" class="active"><i class='bx bxs-credit-card'></i></a>
                 <a href="#" class="active"><i class='bx bxs-cog'></i></a>
                 <a href="index.php" class="active"><i class='bx bx-arrow-back'></i></a>
                 
