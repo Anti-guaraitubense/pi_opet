@@ -16,6 +16,11 @@
 	--bg-color: #201b2c;;
 	--link-color: #00ffc8;
 	
+	--comp-color: #FF2100;
+	--comp-color-dark: #B31700;
+
+	--error-color: #f01f1f;
+
 	--big-font: 4.5rem;
 	--h2-font: 2.6rem;
 	--p-font: 1.1rem;
@@ -145,11 +150,13 @@ p{
 	border: none;
 	color: var(--main-color);
 	background-color: var(--other-color);
+	transition: .1s;
 }
 
 .btn:hover{
 	text-decoration: underline;
-	font-weight: 900;
+	color: var(--comp-color);
+	transition: .1s;
 }
 
 .bio-box{
@@ -180,10 +187,18 @@ p{
 	color: var(--link-color);
 	text-decoration: none;
 }
+.page-link:hover{
+	color: var(--comp-color);
+	text-decoration: none;
+}
+.page-link:active{
+	color: var(--comp-color-dark);
+	text-decoration: none;
+}
 
 .error-text{
 	position: fixed;
-	color: #f01f1f;
+	color: var(--error-color);
 	top: 32.5vh;
 	width: 90px;
 	left: 58vw;
@@ -235,5 +250,31 @@ label{
 }
 
 h5{
-	color: rebeccapurple;
+	color: var(--error-color);
+}
+
+.label-pfp{
+	color: var(--link-color);
+	transition: .1s;
+}
+
+.label-pfp:hover{
+	color: var(--comp-color-dark);
+	transition: .1s;
+}
+
+.error-cpf{
+	position: fixed;
+	top: 42vh;
+	left: 42.4vw;
+}
+.error-nmr{
+	position: fixed;
+	top: 50.2vh;
+	left: 46vw;
+}
+.error-cep{
+	position: fixed;
+	top: 58.3vh;
+	left: 46.4vw;
 }

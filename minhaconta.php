@@ -87,7 +87,7 @@
                         if($info['cpf_user'] == NULL){
                             if(isset($_POST['change_cpf'])){
                                 ?>
-                                    <p><input type="number" name="cpf"> <input type="submit" value="enviar" name="sub_cpf"></p>
+                                    <p><input type="number" name="cpf" class="input-bio"> <input type="submit" value="enviar" name="sub_cpf" class="btn"></p>
                                 <?php
                             }else{
                                 ?>
@@ -146,7 +146,7 @@
 
                                 header("location:minhaconta.php");
                             }else{
-                                echo "<h5>Número Inválido</h5>";
+                                echo "<h5 class='error-nmr'>Número Inválido</h5>";
                             }
                         }
                     ?>
@@ -184,7 +184,7 @@
 
                                     header("location:minhaconta.php");
                                 }else{
-                                    echo "<h5>CEP inválido</h5>";
+                                    echo "<h5 class='error-cep'>CEP inválido</h5>";
                                 }
                             }
                         }else{
@@ -241,7 +241,7 @@
                             <?php 
                                 if(isset($_POST['change-pfp'])){
                                     ?>
-                                    <label for="pfp">Arquivo</label>
+                                    <label for="pfp" class="label-pfp">Arquivo</label>
                                     <input type="file" class="input-pfp" name="pfp" id="pfp">
                                     <button class="btn btn-change-pfp" type="submit" name="submit">Carregar foto</button>
                                     <?php
