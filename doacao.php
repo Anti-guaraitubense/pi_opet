@@ -2,12 +2,12 @@
     include_once 'config.php';
 
     session_start();
-
     if(!isset($_SESSION['id'])){
         header("location:login.php");
     }
 
     $id_user = $_SESSION['id'];
+?>
 ?>
 
 <!DOCTYPE html>
@@ -19,18 +19,38 @@
     <script src="js/script.js"></script>
 </head>
 <body onload="evitar_dados_reload();">
-    <a href="index.php">Doasans</a>
+<div class="container">
+            <div class="item">
+                <div class="contact">
+                    <div class="first-text">Entre em contato</div>
+                    <img src="img/message.svg" class="image">
+                    <div class="social-links">
+                        <span class="second-text">Siga nas redes sociais</span>
+                        <ul class="social-media">
+                            <li><a href="#"><i class='bx bxl-instagram'></i></a></li>
+                            <li><a href="mailto:contato@doasansempresarial.com/"><i class='bx bxl-gmail'></i></a></li>
+                            <li><a href="#"><i class='bx bxl-twitter'></i></a></li>
+                            <li><a href="https://github.com/Anti-guaraitubense/pi_opet"><i class='bx bxl-github'></i></a></li>
+                            <button class="btn1"><a href="index.php">Voltar</a></button>
+                        </ul>
+                        <button class="btn">Enviar</button>
+                    </div>
+                </div>
+                    <div class="submit-form">
+                        <h4 class="third-text">Faça sua Doação!</h4>
+                        <form action="doacao.php" method="post" enctype="multipart/form-data">
+                            <div class="info-box">
+                                <input type="text" name="nome_prod" placeholder="Nome do produto">
+                                <input type="file" name="foto_prod" placeholder="Fotos do produto">
+                                <br>
+                                <input type="date" name="validade_prod" placeholder="Validade">
+                                <input type="submit" name="submit" value="Enviar">
+                            </div>
+                        </form>
+                    </div>
 
-    <form action="doacao.php" method="post" enctype="multipart/form-data">
-        <div class="info-box">
-            <input type="text" name="nome_prod" placeholder="Nome do produto">
-            <input type="file" name="foto_prod" placeholder="Fotos do produto">
-            <br>
-            <input type="date" name="validade_prod" placeholder="Validade">
-            <input type="submit" name="submit" value="Enviar">
+            </div>
         </div>
-    </form>
-
     <?php
 
         if(isset($_POST['submit'])){
