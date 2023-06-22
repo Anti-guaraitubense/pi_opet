@@ -8,15 +8,14 @@
 
     $id_user = $_SESSION['id'];
 ?>
-?>
 
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doasans</title>
-    <link rel="stylesheet" type="text/css" href="css/doacao.css">
-    <script src="js/script.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/doacaos.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 </head>
 <body onload="evitar_dados_reload();">
 <div class="container">
