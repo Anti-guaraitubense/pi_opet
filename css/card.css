@@ -48,9 +48,9 @@ body{
     box-shadow: 0 10px 15px rgba(0, 0, 0, .1);
     padding: 20px;
     width: 500px;
-    position: relative;
-    left: -100px;
-    top: 135px;
+    position: absolute;
+    left: -5.5vw;
+    top: 23vh;
 }
 
 .container form .inputbox{
@@ -181,3 +181,13 @@ p{
 	
 }
 
+.cartoes{
+	position: relative;
+	color: var(--link-color);
+}
+
+.cartoes-box{
+	position: fixed;
+	top: 22vh;
+	left: 43vw;
+}
