@@ -86,7 +86,7 @@
         return $texto->bairro;
     }
 
-    function check_card($cartao_num, $cartao_nome, $cartao_cvv, $cartao_mes){
+    function check_card($cartao_num, $cartao_nome, $cartao_cvv, $cartao_mes, $cartao_ano){
 
         if(strlen($cartao_num) == 16 && strlen($cartao_cvv) == 3){
             $check_card_num = is_numeric($cartao_num);
@@ -94,8 +94,16 @@
             $check_card_cvv = is_numeric($cartao_cvv);
                 
             $mes_atual = date("m");
+            $ano_atual = date("Y");
+
+            if($mes_atual < $cartao_mes){
+                if($cartao_ano > $ano_atual){
+                    $check_card_val = 1;
+                }
+            }else{
+                $check_card_val = 1;
+            }
             
-            $check_card_val = ($mes_atual > $cartao_mes) ? 0 : 1;
             if($check_card_num == 1 && $check_card_name == 0 && $check_card_cvv == 1 && $check_card_val == 1){
                 return true;
             }else{

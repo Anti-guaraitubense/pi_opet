@@ -135,12 +135,10 @@
             $card_num = $_POST['card_num'];
             $card_name = $_POST['card_name'];
             $card_cvv = $_POST['card_cvv'];
-
             $card_month = $_POST['card_month'];
-
             $card_year = $_POST['card_year'];
 
-            if(check_card($card_num, $card_name, $card_cvv, $card_month)){
+            if(check_card($card_num, $card_name, $card_cvv, $card_month, $card_year)){
                 
                 $add_card = $conn->prepare('INSERT INTO `cartao` (`id_user_cartao`, `nome_cartao`, `nmr_cartao`, `mesv_cartao`, `anov_cartao`, `cvv_cartao`) 
                                                     VALUES (:id, :nome, :nmr, :mesv, :anov, :cvv);');
