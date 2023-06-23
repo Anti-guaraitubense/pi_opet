@@ -94,8 +94,8 @@
         </div>
         <div class="about-text">
             <h2>Sempre pensando nos próximos.<br>Faça o mesmo você também!</h2>
-            <p>SOBRE NOS</p>
-            <a href="#" class="btn">Explore Sobre<i class='bx bxs-right-arrow'></i></a>
+            <p>Uma empresa que busca inovar e ajudar todos ao nosso alcance, inovando com o mais novo delivery de doação de comida, passando por uma rígida seleção para ver se o alimento está propício a ser doado de uma forma que não ira prejudicar a saúde de alguém. Venha e ajude você também, faça parte desse novo time!</p>
+            <a href="#" class="btn">Explore o Site<i class='bx bxs-right-arrow'></i></a>
         </div>
     </section>
     
@@ -144,14 +144,14 @@
                 </div>
             </div>
             <div class="box">
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                <p>Bom atendimento, com grande qualidade geral, site com um visual bonito, com variações de uso e fácil de se usar.</p>
                 <div class="in-box">
                     <div class="bx-img">
                         <img src="img/ft3.jpg">
                     </div>
                     <div class="bx-txt">
-                        <h4>Gustavo Walk</h4>
-                        <h5>Engenheiro de Software</h5>
+                        <h4>Neymar Jr</h4>
+                        <h5>Jogador de Futebol</h5>
                         <div class="ratings">
                             <a href="#"><i class="ri-star-fill"></i></a>
                             <a href="#"><i class="ri-star-fill"></i></a>
@@ -180,16 +180,16 @@
             </div>
             <div class="details">
                 <div class="main-d">
-                    <a href="#"><i class='bx bx-user'></i>Gustavo Walk</a>
+                    <a href="https://github.com/gustawalk"><i class='bx bx-user'></i>Gustavo Walk</a>
                 </div>
                 <div class="main-d">
-                    <a href="#"><i class='bx bx-user'></i>Luiz Weinhardt</a>
+                    <a href="https://github.com/lgskrt"><i class='bx bx-user'></i>Luiz Weinhardt</a>
                 </div>
                 <div class="main-d">
                     <a href="#"><i class='bx bx-user'></i>Luis Ludwig</a>
                 </div>
                 <div class="main-d">
-                    <a href="#"><i class='bx bx-user'></i>Gabriel Menegaço</a>
+                    <a href="https://github.com/xiboquinha"><i class='bx bx-user'></i>Gabriel Menegaço</a>
                 </div>
             </div>
 

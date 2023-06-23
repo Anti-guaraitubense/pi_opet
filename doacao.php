@@ -20,8 +20,8 @@
 </head>
 <body onload="evitar_dados_reload();">
 <div class="container">
-            <div class="item">
-                <div class="contact">
+    <div class="item">
+        <div class="contact">
                     <div class="first-text">Entre em contato</div>
                     <img src="img/message.svg" class="image">
                     <div class="social-links">
@@ -33,24 +33,26 @@
                             <li><a href="https://github.com/Anti-guaraitubense/pi_opet"><i class='bx bxl-github'></i></a></li>
                             <button class="btn1"><a href="index.php">Voltar</a></button>
                         </ul>
-                        <button class="btn">Enviar</button>
                     </div>
                 </div>
                     <div class="submit-form">
                         <h4 class="third-text">Faça sua Doação!</h4>
                         <form action="doacao.php" method="post" enctype="multipart/form-data">
-                            <div class="info-box">
-                                <input type="text" name="nome_prod" placeholder="Nome do produto">
-                                <input type="file" name="foto_prod" placeholder="Fotos do produto">
-                                <br>
-                                <input type="date" name="validade_prod" placeholder="Validade">
-                                <input type="submit" name="submit" value="Enviar">
+                            <div class="input-box">
+                                <input type="text" class="input" name="nome_prod" required>
+                                <label for="">Produtos Selecionados</label>
                             </div>
+                            <div class="input-box">
+                                <input type="file" class="input upload-img" name="foto_prod" required>
+                            </div>
+                            <div class="input-box">
+                                <input type="date" class="input" name="validade_prod" placeholder="Validade" required>
+                            </div>
+                            <button class="btn" type="submit">Enviar</button>
                         </form>
                     </div>
-
-            </div>
-        </div>
+    </div>
+</div>
     <?php
 
         if(isset($_POST['submit'])){
