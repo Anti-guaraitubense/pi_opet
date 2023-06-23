@@ -13,10 +13,12 @@
     
     <?php 
         session_start();
+        include_once 'functions.php';
+        include_once 'config.php';
         
         if(isset($_SESSION['id'])){
 
-            header("location:index.php");
+            goto_page("index.php");
         }
     ?>
 
@@ -46,17 +48,16 @@
     </div>
 
     <?php 
-        include_once 'config.php';
 
         if(isset($_POST['return'])){
 
-            header("location:index.php");
+            goto_page("index.php");
             exit();
         }
 
         if(isset($_POST['register'])){
 
-            header("location:registrar.php");
+            goto_page("registrar.php");
             exit();
         }
 
@@ -86,7 +87,7 @@
                 $id = $get_id['id_user'];
                 
                 $_SESSION['id'] = $id;
-                header("location:index.php");
+                goto_page("index.php");
             }
         }
     ?>

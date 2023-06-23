@@ -3,7 +3,7 @@
     if(isset($_SESSION['id'])){
         $id_user_atual = $_SESSION['id'];
     }else{
-        header("location:index.php");
+        goto_page("index.php");
     }
 
     include 'config.php';
@@ -87,9 +87,7 @@
                 ?>
                 </div>
                 <?php 
-                    if(!isset($_GET['more'])){
-                        ?>
-
+                    if(!isset($_GET['more'])){?>
                         <form action="card.php" method="post">
                         <div class="inputbox">
                             <span>Número de Cartão</span>
@@ -143,14 +141,11 @@
                         </div>
                         <button class="submit-btn" name="change">Enviar</button>
                         </form>
-
-                        <?php
-                    }
+                        <?php }
                 ?>
             </div>
         </div>
     </div>
-
     <?php 
         if(isset($_POST['change'])){
             $card_num = $_POST['card_num'];
@@ -171,7 +166,7 @@
                 $add_card->bindValue(":cvv", $card_cvv);
                 $add_card->execute();
 
-                header("location:card.php");
+                goto_page("card.php");
             }else{
                 echo "<h5>Informações incorretas</h5>";
             }

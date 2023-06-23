@@ -3,7 +3,7 @@
     include_once 'functions.php';
     session_start();
     if(!isset($_SESSION['id'])){
-        header("location:index.php");
+        goto_page("index.php");
         exit();
     }
     $id_user_atual = $_SESSION['id'];
@@ -111,7 +111,7 @@
                                 $change_cpf->bindValue(":id", $id_user_atual);
                                 $change_cpf->execute();
 
-                                header("location:minhaconta.php");
+                                goto_page("minhaconta.php");
                             }else{
                                 echo "<h5 class='error-cpf'>CPF Inválido</h5>";
                             }
@@ -145,7 +145,7 @@
                                 $change_num->bindValue(":id", $id_user_atual);
                                 $change_num->execute();
 
-                                header("location:minhaconta.php");
+                                goto_page("minhaconta.php");
                             }else{
                                 echo "<h5 class='error-nmr'>Número Inválido</h5>";
                             }
@@ -183,7 +183,7 @@
                                     $change_cep->bindValue(":id", $id_user_atual);
                                     $change_cep->execute();
 
-                                    header("location:minhaconta.php");
+                                    goto_page("minhaconta.php");
                                 }else{
                                     echo "<h5 class='error-cep'>CEP inválido</h5>";
                                 }
@@ -232,7 +232,7 @@
                     $newbio->bindValue(":newbio", $_POST['new-bio']);
                     $newbio->bindValue(":id", $id_user_atual);
                     $newbio->execute();
-                    header("location:minhaconta.php");
+                    goto_page("minhaconta.php");
                 }
             ?>
                     </form>
@@ -295,7 +295,7 @@
                             $alt_foto->bindValue(":urlfoto", $destino);
                             $alt_foto->execute();
 
-                            header("location:minhaconta.php");
+                            goto_page("minhaconta.php");
                         }else{
                             echo "<h5 class='error-text'>Arquivo muito grande</h5>";
                         }

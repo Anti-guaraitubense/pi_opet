@@ -42,6 +42,7 @@ CREATE TABLE `doacao` (
   `id_doacao` int(9) NOT NULL,
   `nome_doacao` varchar(40) NOT NULL,
   `img_doacao` varchar(40) NOT NULL,
+  `img_validade` varchar(40) NOT NULL,
   `status_doacao` int(9) NOT NULL,
   `user_doador` int(11) NOT NULL,
   `validade_doacao` varchar(40) NOT NULL,

@@ -85,6 +85,20 @@
 
         return $texto->bairro;
     }
+    function get_city($cep){
+
+        $ch = curl_init();
+        $link = "viacep.com.br/ws/$cep/json/";
+
+        curl_setopt($ch, CURLOPT_URL, $link);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $data = curl_exec($ch);
+
+        $texto = json_decode($data);
+
+        return $texto->localidade;
+    }
 
     function check_card($cartao_num, $cartao_nome, $cartao_cvv, $cartao_mes, $cartao_ano){
 
@@ -112,6 +126,12 @@
         }else{
             return false;
         }
+    }
+
+    function goto_page($target){
+        echo "<script type='text/javascript'>
+                window.location.href = '$target';
+                </script>";
     }
 
 ?>

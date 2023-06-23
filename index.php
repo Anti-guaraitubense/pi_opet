@@ -1,4 +1,5 @@
 <?php
+    include_once 'functions.php';
     include_once 'config.php';
     $logado = false;
     session_start();
@@ -9,7 +10,7 @@
 
         if(isset($_GET['logout'])){
             session_destroy();
-            header("location:index.php");
+            goto_page("index.php");
             exit();   
         }
     }
@@ -212,14 +213,14 @@
     <?php
         if(isset($_POST['my-acc'])){
 
-            header("location:minhaconta.php");
+            goto_page("minhaconta.php");
             exit();
         }
 
         if(isset($_POST['logout'])){
 
             session_destroy();
-            header("location:index.php");
+            goto_page("index.php");
             exit();
         }
 

@@ -1,10 +1,11 @@
 <?php 
     include_once 'config.php';
+    include_once 'functions.php';
 
     session_start();
 
     if(!isset($_SESSION['id'])){
-        header("location:index.php");
+        goto_page("index.php");
         exit();
     }
     $user_id = $_SESSION['id'];
@@ -17,7 +18,7 @@
     $perm = $info['user_perm'];
 
     if($perm <= 1){
-        header("location:index.php");
+        goto_page("index.php");
         exit();
     }
 
@@ -56,7 +57,7 @@
                 $alterar = $conn->prepare('UPDATE `login` SET `posdoador_user` = 0 WHERE `id_user` = :id');
                 $alterar->bindValue(":id", $_GET['id']);
                 $alterar->execute();
-                header("location:minhaconta.php");
+                goto_page("minhaconta.php");
             }
 
             if(isset($_GET['id_doacao'])){
@@ -74,8 +75,12 @@
                 $row_user = $doador->fetch();
 
                 echo "<br><br>";
-                echo "<img src='$row[img_doacao]' style='width: 300px; height: 250px;'> Validade: $row[validade_doacao]";
-                echo "<br>Informações sobre o doador: <br>Usuário: $row_user[nome_user]<br>E-mail: $row_user[email_user]";
+                echo "<img src='$row[img_doacao]' style='width: 300px; height: 250px;'><img src='$row[img_validade]' style='width: 300px; height: 250px;'> Validade: $row[validade_doacao]";
+                echo "<br>Informações sobre o doador: 
+                    <br>Usuário: $row_user[nome_user]
+                    <br>E-mail: $row_user[email_user]
+                    <br>Telefone: $row_user[nmr_user]
+                    <br>Cidade: ".get_city($row_user['cep_user']);
 
                 ?>
                     <form action="posdoacao.php?id=<?php echo $_GET['id']?>&id_doacao=<?php echo $_GET['id_doacao']?>" method="post">
@@ -91,7 +96,7 @@
                     $recusar->bindValue(":id_val", $user_id);
                     $recusar->execute();
 
-                    header("location:posdoacao.php?id=$_GET[id]");
+                    goto_page("posdoacao.php?id=$_GET[id]");
                 }
 
                 if(isset($_POST['aceitar'])){
@@ -138,11 +143,11 @@
                         $alter_user = $conn->prepare('UPDATE `login` SET `posdoador_user` = 0 WHERE `id_user` = :id');
                         $alter_user->bindValue(":id", $_GET['id']);
                         $alter_user->execute();
-                        header("location:posdoacao.php");
+                        goto_page("posdoacao.php");
                         exit();
                     }
                     
-                    header("location:posdoacao.php?id=$_GET[id]");
+                    goto_page("posdoacao.php?id=$_GET[id]");
                     exit();
                 }
                 exit();

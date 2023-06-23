@@ -11,9 +11,11 @@
 
     <?php 
 
+        include_once 'functions.php';
+        include_once 'config.php';
         session_start();
         if(isset($_SESSION['id'])){
-            header("location:index.php");
+            goto_page("index.php");
         }
     ?>
 
@@ -49,17 +51,15 @@
 
         <?php 
 
-            include_once 'config.php';
-
             if(isset($_POST['return'])){
 
-                header("location:index.php");
+                goto_page("index.php");
                 exit();
             }
 
             if(isset($_POST['login'])){
 
-                header("location:login.php");
+                goto_page("login.php");
                 exit();
             }
             
@@ -139,7 +139,7 @@
                             $cria_bio->bindValue(":id", $id_login);
                             $cria_bio->execute();
 
-                            header('location:index.php');
+                            goto_page("index.php");
                         }
                         else{
                             ?>

@@ -1,10 +1,11 @@
 <?php 
     include_once 'config.php';
+    include_once 'functions.php';
 
     session_start();
 
     if(!isset($_SESSION['id'])){
-        header("location:index.php");
+        goto_page("index.php");
         exit();
     }
     $user_id = $_SESSION['id'];
@@ -17,7 +18,7 @@
     $perm = $info['user_perm'];
     
     if($perm <= 0){
-        header("location:index.php");
+        goto_page("index.php");
         exit();
     }
 
@@ -57,7 +58,7 @@
                 $row_user = $doador->fetch();
 
                 echo "<br><br>";
-                echo "<img src='$row[img_doacao]' style='width: 300px; height: 250px;'> Validade: $row[validade_doacao]";
+                echo "<img src='$row[img_doacao]' style='width: 300px; height: 250px;'><img src='$row[img_validade]' style='width: 300px; height: 250px;'> Validade: $row[validade_doacao]";
                 echo "<br>Informações sobre o doador: <br>Usuário: $row_user[nome_user]<br>E-mail: $row_user[email_user]";
 
                 ?>
@@ -74,7 +75,7 @@
                     $recusar->bindValue(":id_val", $user_id);
                     $recusar->execute();
 
-                    header("location:controledoacao.php?id=$_GET[id]");
+                    goto_page("controledoacao.php?id=$_GET[id]");
                 }
 
                 if(isset($_POST['aceitar'])){
@@ -88,7 +89,7 @@
                     $aceitar->bindValue(":id", $_GET['id']);
                     $aceitar->execute();
                     
-                    header("location:controledoacao.php?id=$_GET[id]");
+                    goto_page("controledoacao.php?id=$_GET[id]");
                 }
                 exit();
             }else{
@@ -103,7 +104,7 @@
                     $change->bindValue(":id", $_GET['id']);
                     $change->execute();
 
-                    header("location:controledoacao.php");
+                    goto_page("controledoacao.php");
                 }
 
                 while($row = $count_doacao->fetch()){
