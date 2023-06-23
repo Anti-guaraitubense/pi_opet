@@ -1,3 +1,15 @@
+<?php
+    session_start();
+    include_once 'config.php';
+    include_once 'functions.php';
+
+    if(!isset($_SESSION['id'])){
+        goto_page("login.php");
+    }else{
+        $id_user_atual = $_SESSION['id'];
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="pt_BR">
     <head>
