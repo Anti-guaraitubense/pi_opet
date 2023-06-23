@@ -77,7 +77,19 @@ CREATE TABLE `login` (
   `doador_user` int(10) NOT NULL,
   `posdoador_user` int(10) NOT NULL,
   `cpf_user` varchar(11) NOT NULL,
-  `cep_user` varchar(10) NOT NULL
+  `cep_user` varchar(10) NOT NULL,
+  `nmr_user` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+CREATE TABLE `cartao` (
+  `id_cartao` int(11) NOT NULL,
+  `id_user_cartao` int(11) NOT NULL,
+  `nome_cartao` varchar(40),
+  `nmr_cartao` varchar(16),
+  `mesv_cartao` varchar(20),
+  `anov_cartao` varchar(20),
+  `cvv_cartao` varchar(20)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -90,6 +102,8 @@ CREATE TABLE `login` (
 ALTER TABLE `bio`
   ADD PRIMARY KEY (`id_bio`);
 
+ALTER TABLE `cartao`
+  ADD PRIMARY KEY (`id_cartao`);
 --
 -- Índices para tabela `doacao`
 --
@@ -117,6 +131,9 @@ ALTER TABLE `login`
 --
 ALTER TABLE `bio`
   MODIFY `id_bio` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `cartao`
+  MODIFY `id_cartao` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `doacao`

@@ -64,7 +64,7 @@
         </div>
         <div class="leftbox">
             <nav>
-                <a href="minhaconta.php" class="active"><i class='bx bxs-user'></i></a>
+                <a href="minhaconta.php" class="deactive"><i class='bx bxs-user'></i></a>
                 <a href="card.php" class="active"><i class='bx bxs-credit-card'></i></a>
                 <a href="#" class="active"><i class='bx bxs-cog'></i></a>
                 <a href="index.php" class="active"><i class='bx bx-arrow-back'></i></a>

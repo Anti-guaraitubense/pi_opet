@@ -29,12 +29,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doasans</title>
     <link rel="stylesheet" type="text/css" href="css/controledoacao.css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.3.0/remixicon.css" rel="stylesheet">
     <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
-    <script src="js/script.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 </head>
 <body onload="evitar_dados_reload();">
 
-    <a href="index.php">Doasans</a>
+    <a href="index.php" class="logo"><i class='bx bxs-package'></i></i>Doasans</a>
 
     <?php 
         $count_doadores = $conn->prepare('SELECT * FROM `login` WHERE `doador_user` = 1');
