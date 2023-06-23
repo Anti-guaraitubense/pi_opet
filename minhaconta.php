@@ -49,6 +49,7 @@
     <script src="js/script.js"></script>
     <link rel="stylesheet" href="css/minhaconta.css" type="text/css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.3.0/remixicon.css" rel="stylesheet">
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 </head>
 <body onload="evitar_dados_reload()";>

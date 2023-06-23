@@ -6,6 +6,7 @@
         <title>Doasans</title>
         <link rel="stylesheet" type="text/css" href="css/askdonate.css">
         <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
         <script src="js/donate.js"></script>
     </head>
 

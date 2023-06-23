@@ -29,6 +29,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doasans</title>
     <link rel="stylesheet" type="text/css" href="css/posdoacao.css">
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
     <script src="js/script.js"></script>
 </head>
 
