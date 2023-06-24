@@ -37,9 +37,20 @@
                 <h1>Cadastre seu cartão</h1>
                 <div class="cartoes-box">
                 <?php
+
                     $cartoes = $conn->prepare('SELECT * FROM `cartao` WHERE `id_user_cartao` = :id');
                     $cartoes->bindValue(":id", $id_user_atual);
                     $cartoes->execute();
+
+                    if(isset($_GET['excluir']) && isset($_GET['id'])){
+                            $idcartao = $_GET['id'];
+
+                            $exc = $conn->prepare('DELETE FROM `cartao` WHERE `id_cartao` = :id');
+                            $exc->bindValue(":id", $idcartao);
+                            $exc->execute();
+
+                            goto_page("card.php");
+                    }
 
                     if($cartoes->rowCount() > 0){
                         if(isset($_GET['more']) && $cartoes->rowCount() > 4){
@@ -48,7 +59,8 @@
                                 $num_card = end($num_card);
                                 ?>
                                     <img src="img/ccflags/mastercard.png" style="width: 40px; height: 25px; vertical-align: center;">
-                                    <span class="cartoes">****-****-****-****-<?php echo $num_card?> Val: <?php echo $row['mesv_cartao']?> / <?php echo $row['anov_cartao']?></span>
+                                        <span class="cartoes">****-****-****-****-<?php echo $num_card?> Val: <?php echo $row['mesv_cartao']?> / <?php echo $row['anov_cartao']?></span>
+                                        <a href="card.php?excluir&id=<?php echo $row['id_cartao']?>">Excluir</a>
                                     <br>
                                 <?php
                             }
@@ -60,6 +72,7 @@
                                     ?>
                                         <img src="img/ccflags/mastercard.png" style="width: 40px; height: 25px; vertical-align: center;">
                                         <span class="cartoes">****-****-****-****-<?php echo $num_card?> Val: <?php echo $row['mesv_cartao']?> / <?php echo $row['anov_cartao']?></span>
+                                        <a href="card.php?excluir&id=<?php echo $row['id_cartao']?>">Excluir</a>
                                         <br>
                                     <?php
                                 }
@@ -75,6 +88,7 @@
                                     ?>
                                         <img src="img/ccflags/mastercard.png" style="width: 40px; height: 25px; vertical-align: center;">
                                         <span class="cartoes">****-****-****-****-<?php echo $num_card?> Val: <?php echo $row['mesv_cartao']?> / <?php echo $row['anov_cartao']?></span>
+                                        <a href="card.php?excluir&id=<?php echo $row['id_cartao']?>">Excluir</a>
                                         <br>
                                     <?php
                                 }
