@@ -18,8 +18,9 @@
     <link rel="stylesheet" type="text/css" href="css/doacao.css">
     <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <script src="js/script.js"></script>
 </head>
-<body onload="evitar_dados_reload();">
+<body defer onload="evitar_dados_reload();" onchange="check_files('label_foto_prod', 'foto_prod', 'label_foto_val', 'foto_val', '#B31700');">
 <div class="container">
     <div class="item">
         <div class="contact">
@@ -43,13 +44,15 @@
                                 <input type="text" class="input" name="nome_prod" placeholder="Nome do produto" required>
                             </div>
                             <div class="input-box">
-                                <input type="file" class="input upload-img" name="foto_prod" required>
+                                    <label for="foto_prod" class="label-pfp input" id="label_foto_prod">Foto do produto</label>
+                                    <input type="file" class="input-arq" name="foto_prod" id="foto_prod">
                             </div>
                             <div class="input-box">
                                 <input type="date" class="input" name="validade_prod" placeholder="Validade" required>
                             </div>
                             <div class="input-box">
-                                <input type="file" class="input upload-img" name="foto_val" required>
+                                    <label for="foto_val" class="label-pfp input" id="label_foto_val">Foto da validade</label>
+                                    <input type="file" class="input-arq" name="foto_val" id="foto_val">
                             </div>
                             <button class="btn" type="submit" name="submit">Enviar</button>
                         </form>

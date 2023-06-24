@@ -46,3 +46,17 @@ sr.reveal ('.middle-text', {});
 sr.reveal ('.row-btn', {delay:300});
 
 sr.reveal ('.review-content,. contact', {delay:300});
+
+function check_files(label1, file1, label2, file2, cor){
+    var label1 = document.getElementById(label1);
+    var file1 = document.getElementById(file1);
+    var label2 = document.getElementById(label2);
+    var file2 = document.getElementById(file2);
+
+    if(file1.files.length > 0){
+        label1.style.color = cor;
+    }
+    if(file2.files.length > 0){
+        label2.style.color = cor;
+    }
+}

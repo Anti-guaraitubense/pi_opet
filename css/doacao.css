@@ -13,7 +13,13 @@
 	--other-color: #2f2841;
 	--second-color: #514869;
 	--bg-color: #201b2c;;
+	--link-color: #00ffc8;
 	
+	--comp-color: #FF2100;
+	--comp-color-dark: #B31700;
+
+	--error-color: #f01f1f;
+
 	--big-font: 4.5rem;
 	--h2-font: 2.6rem;
 	--p-font: 1.1rem;
@@ -139,6 +145,7 @@ form{
     padding-left: 10px;
     color: #fff;
     font-size: 16px;
+    transition: .1s;
 }
 
 .input-box label{
@@ -207,5 +214,25 @@ a{
 }
 
 .upload-img{
-    position: relative;
+    position: fixed;
+    display: none;
+}
+
+.label-pfp{
+	color: var(--main-color);
+	transition: .1s;
+}
+
+.input:hover{
+	color: var(--main-color);
+	transition: .1s;
+}
+
+.input-arq{
+	display: none;
+}
+
+label{
+    margin-left: -10px;
+    text-align: center;
 }
