@@ -176,7 +176,7 @@
 
                                 $info_cep = json_decode($data);
 
-                                if($info_cep != NULL){
+                                if($info_cep != NULL && $info_cep->uf != NULL){
                                     
                                     $change_cep = $conn->prepare('UPDATE `login` SET `cep_user` = :cep WHERE `id_user` = :id');
                                     $change_cep->bindValue(":cep", $cep);
