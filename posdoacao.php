@@ -75,33 +75,60 @@
 
                 $row_user = $doador->fetch();
 
-                if(get_district($row_user['cep_user']) && $row_user['nmr_user'] != NULL){
-                    $cidade = get_city($row_user['cep_user']);
-                    $bairro = get_district($row_user['cep_user']);
-                    echo "
-                    <div class='doacoes-expd-block'>
-                    <br>
-                    <br>
-                    <img src='$row[img_doacao]' class='img-doacao-expd'>
-                    <img src='$row[img_validade]' class='img-doacao-expd'>
-                    <span>
-                        Validade: $row[validade_doacao]
+                if($row_user['cep_user'] != NULL){
+                    if($row_user['nmr_user'] != NULL){
+                        $cidade = get_city($row_user['cep_user']);
+                        $bairro = get_district($row_user['cep_user']);
+                        echo "
+                        <div class='doacoes-expd-block'>
                         <br>
-                        Informações sobre o doador: 
-                        <br>Usuário: $row_user[nome_user]
-                        <br>E-mail: $row_user[email_user]
-                        <br>Telefone: $row_user[nmr_user]
-                        <br>Cidade: $cidade
-                        <br>Bairro: $bairro
-                    </span>
-                    <form action='posdoacao.php?id=$_GET[id]&id_doacao=$_GET[id_doacao]' method='post'>
+                        <br>
+                        <img src='$row[img_doacao]' class='img-doacao-expd'>
+                        <img src='$row[img_validade]' class='img-doacao-expd'>
+                        <span>
+                            Validade: $row[validade_doacao]
                             <br>
-                            <button style='color: green;' name='aceitar'>Aceitar</button>
-                            <button style='color: red;' name='recusar'>Recusar</button>
-                    </form>
-                    </div>
-                    ";
+                            Informações sobre o doador: 
+                            <br>Usuário: $row_user[nome_user]
+                            <br>E-mail: $row_user[email_user]
+                            <br>Telefone: $row_user[nmr_user]
+                            <br>Cidade: $cidade
+                            <br>Bairro: $bairro
+                        </span>
+                        <form action='posdoacao.php?id=$_GET[id]&id_doacao=$_GET[id_doacao]' method='post'>
+                                <br>
+                                <button style='color: green;' name='aceitar'>Aceitar</button>
+                                <button style='color: red;' name='recusar'>Recusar</button>
+                        </form>
+                        </div>
+                        ";
 
+                    }else{
+                        $cidade = get_city($row_user['cep_user']);
+                        $bairro = get_district($row_user['cep_user']);
+                        echo "
+                        <div class='doacoes-expd-block'>
+                        <br>
+                        <br>
+                        <img src='$row[img_doacao]' class='img-doacao-expd'>
+                        <img src='$row[img_validade]' class='img-doacao-expd'>
+                        <span>
+                            Validade: $row[validade_doacao]
+                            <br>
+                            Informações sobre o doador: 
+                            <br>Usuário: $row_user[nome_user]
+                            <br>E-mail: $row_user[email_user]
+                            <br>Cidade: $cidade
+                            <br>Bairro: $bairro
+                        </span>
+                        <form action='posdoacao.php?id=$_GET[id]&id_doacao=$_GET[id_doacao]' method='post'>
+                                <br>
+                                <button style='color: green;' name='aceitar'>Aceitar</button>
+                                <button style='color: red;' name='recusar'>Recusar</button>
+                        </form>
+                        </div>
+                        ";
+                    }
                 }else{
                     echo "
                     <div class='doacoes-expd-block'>
@@ -139,11 +166,14 @@
                 if(isset($_POST['aceitar'])){
 
                     ?>
-                        <p>Quantos pontos essa doação merece?</p>
+                    <div class="box-pontos" style="position: relative; top: 15vh; left: 5vw; max-width: 1000px">
+                        <span>Quantos pontos essa doação merece?</span>
+                        <br>
                         <form action="" method="post">
                             <input type="number" name="val-pontos">
                             <input type="submit" name="sub-pontos">
                         </form>
+                    </div>
                     <?php
                 }
 
