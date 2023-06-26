@@ -79,8 +79,12 @@
                 echo "<br>Informações sobre o doador: 
                     <br>Usuário: $row_user[nome_user]
                     <br>E-mail: $row_user[email_user]
-                    <br>Telefone: $row_user[nmr_user]
-                    <br>Cidade: ".get_city($row_user['cep_user']);
+                    <br>Telefone: $row_user[nmr_user]";
+                if(get_city($row_user['cep_user'])){
+                    echo "
+                    <br>Cidade: ".get_city($row_user['cep_user']).
+                    "<br>Bairro: ".get_district($row_user['cep_user']);
+                }
 
                 ?>
                     <form action="posdoacao.php?id=<?php echo $_GET['id']?>&id_doacao=<?php echo $_GET['id_doacao']?>" method="post">
