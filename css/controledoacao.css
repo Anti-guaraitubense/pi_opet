@@ -77,6 +77,14 @@ span{
 	color: var(--main-color);
 	font-weight: bold;
 }
+.voltar-link-pos{
+	font-size: 150%;
+	position: fixed;
+	top: 5.7vh;
+	left: 16vw;
+	color: var(--main-color);
+	font-weight: bold;
+}
 
 .expd-link{
 	color: var(--main-color);

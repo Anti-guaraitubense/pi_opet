@@ -29,23 +29,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doasans</title>
-    <link rel="stylesheet" type="text/css" href="css/posdoacao.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/controledoacao.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.3.0/remixicon.css" rel="stylesheet">
     <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <script src="js/script.js"></script>
 </head>
 
 <body onload="evitar_dados_reload();">
-    <a href="index.php">Doasans</a>
-
-    <h1>Área de pós doação</h1>
+    
+    <a href="index.php" class="logo"><i class='bx bxs-package'></i></i>Doasans</a>
 
     <?php 
-
         $count_doadores = $conn->prepare('SELECT * FROM `login` WHERE `posdoador_user` = 1');
         $count_doadores->execute();
 
         if($count_doadores->rowCount() == 0){
-            echo "Sem informações para serem mostradas";
+            echo "<h1 class='no-data'>Sem dados para exibir</h1>";
         }
 
         if(isset($_GET['id'])){
@@ -61,7 +62,7 @@
             }
 
             if(isset($_GET['id_doacao'])){
-                echo "<a href='posdoacao.php?id=$_GET[id]'>Retornar</a>";
+                echo "<a href='posdoacao.php?id=$_GET[id]' class='voltar-link'>Voltar</a>";
 
                 $doacao = $conn->prepare('SELECT * FROM `doacao` WHERE `id_doacao` = :id');
                 $doacao->bindValue("id", $_GET['id_doacao']);
@@ -74,24 +75,56 @@
 
                 $row_user = $doador->fetch();
 
-                echo "<br><br>";
-                echo "<img src='$row[img_doacao]' style='width: 300px; height: 250px;'><img src='$row[img_validade]' style='width: 300px; height: 250px;'> Validade: $row[validade_doacao]";
-                echo "<br>Informações sobre o doador: 
-                    <br>Usuário: $row_user[nome_user]
-                    <br>E-mail: $row_user[email_user]
-                    <br>Telefone: $row_user[nmr_user]";
-                if(get_city($row_user['cep_user'])){
+                if(get_district($row_user['cep_user']) && $row_user['nmr_user'] != NULL){
+                    $cidade = get_city($row_user['cep_user']);
+                    $bairro = get_district($row_user['cep_user']);
                     echo "
-                    <br>Cidade: ".get_city($row_user['cep_user']).
-                    "<br>Bairro: ".get_district($row_user['cep_user']);
-                }
-
-                ?>
-                    <form action="posdoacao.php?id=<?php echo $_GET['id']?>&id_doacao=<?php echo $_GET['id_doacao']?>" method="post">
-                        <button style="color: green;" name="aceitar">Aceitar</button>
-                        <button style="color: red;" name="recusar">Recusar</button>
+                    <div class='doacoes-expd-block'>
+                    <br>
+                    <br>
+                    <img src='$row[img_doacao]' class='img-doacao-expd'>
+                    <img src='$row[img_validade]' class='img-doacao-expd'>
+                    <span>
+                        Validade: $row[validade_doacao]
+                        <br>
+                        Informações sobre o doador: 
+                        <br>Usuário: $row_user[nome_user]
+                        <br>E-mail: $row_user[email_user]
+                        <br>Telefone: $row_user[nmr_user]
+                        <br>Cidade: $cidade
+                        <br>Bairro: $bairro
+                    </span>
+                    <form action='posdoacao.php?id=$_GET[id]&id_doacao=$_GET[id_doacao]' method='post'>
+                            <br>
+                            <button style='color: green;' name='aceitar'>Aceitar</button>
+                            <button style='color: red;' name='recusar'>Recusar</button>
                     </form>
-                <?php
+                    </div>
+                    ";
+
+                }else{
+                    echo "
+                    <div class='doacoes-expd-block'>
+                    <br>
+                    <br>
+                    <img src='$row[img_doacao]' class='img-doacao-expd'>
+                    <img src='$row[img_validade]' class='img-doacao-expd'>
+                    <span>
+                        Validade: $row[validade_doacao]
+                        <br>
+                        Informações sobre o doador: 
+                        <br>Usuário: $row_user[nome_user]
+                        <br>E-mail: $row_user[email_user]
+                    </span>
+                    <form action='posdoacao.php?id=$_GET[id]&id_doacao=$_GET[id_doacao]' method='post'>
+                            <br>
+                            <button style='color: green;' name='aceitar'>Aceitar</button>
+                            <button style='color: red;' name='recusar'>Recusar</button>
+                    </form>
+                    </div>
+                    ";
+
+                }
 
                 if(isset($_POST['recusar'])){
 
@@ -156,16 +189,24 @@
                 }
                 exit();
             }else{
+                echo "<a href='posdoacao.php' class='voltar-link'>Voltar</a>";
                 while($row_doacao = $count_doacoes->fetch()){
-                    echo "<br> <hr> $row_doacao[id_doacao] - $row_doacao[nome_doacao] - $row_doacao[data_doacao] <br>";
-                    echo "<img src='$row_doacao[img_doacao]' style='width: 200px; height: 150px'>";
-                    echo "<a href='posdoacao.php?id=$_GET[id]&id_doacao=$row_doacao[id_doacao]'>Expandir</a>";
+                    ?>
+                    <div class="doacoes-block">
+                        <br>
+                        <span><?php echo "$row_doacao[id_doacao]"; ?> - <?php echo "$row_doacao[nome_doacao]"; ?> - <?php echo "$row_doacao[data_doacao]"; ?></span>
+                        <br>
+                        <img src="<?php echo "$row_doacao[img_doacao]"; ?>" class="imgs">
+                        <a href="posdoacao.php?id=<?php echo "$_GET[id]"; ?>&id_doacao=<?php echo "$row_doacao[id_doacao]"; ?>" class="expd-link">Expandir</a>
+                    </div>
+                    <?php
                 }
             }
 
         }else{
+            echo "<a href='minhaconta.php' class='voltar-link'>Sua conta</a>";
             while($row_doador = $count_doadores->fetch()){
-                echo "<a href='posdoacao.php?id=$row_doador[id_user]'>$row_doador[nome_user]</a> <br>";
+                echo "<br><a href='posdoacao.php?id=$row_doador[id_user]' class='user-name'>$row_doador[nome_user]</a>";
             }
         }
     ?>
