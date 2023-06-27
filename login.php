@@ -72,22 +72,29 @@
                 $pass = "";
             }
 
-            $check = $conn->prepare('SELECT * FROM `login` WHERE `nome_user` = :user AND `senha_user` = md5(:pass) AND `status_user` = 1');
+
+            $check = $conn->prepare('SELECT * FROM `login` WHERE `nome_user` = :user AND `status_user` = 1');
             $check->bindValue(":user", $user);
-            $check->bindValue(":pass", $pass);
             $check->execute();
+            $usuario = $check->fetch();
 
             if($check->rowCount() == 0){
                 ?>
                         <h6 class="error">Usuário ou senha não encontrada!</h6>
                 <?php
             }else{
+                $pass = password_verify($pass, $usuario['senha_user']);
                 
-                $get_id = $check->fetch();
-                $id = $get_id['id_user'];
-                
-                $_SESSION['id'] = $id;
-                goto_page("index.php");
+                if($pass){
+                    $id = $usuario['id_user'];
+                    
+                    $_SESSION['id'] = $id;
+                    goto_page("index.php");
+                }else{
+                    ?>
+                        <h6 class="error">Usuário ou senha não encontrada!</h6>
+                    <?php
+                }
             }
         }
     ?>

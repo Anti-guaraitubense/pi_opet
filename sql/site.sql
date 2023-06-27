@@ -70,7 +70,7 @@ CREATE TABLE `fotoperfil` (
 CREATE TABLE `login` (
   `id_user` int(11) NOT NULL,
   `nome_user` varchar(40) NOT NULL,
-  `senha_user` varchar(60) NOT NULL,
+  `senha_user` varchar(255) NOT NULL,
   `email_user` varchar(40) NOT NULL,
   `status_user` int(10) NOT NULL,
   `score_user` int(10) NOT NULL,

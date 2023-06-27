@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 26-Jun-2023 às 22:08
+-- Tempo de geração: 27-Jun-2023 às 06:06
 -- Versão do servidor: 10.4.27-MariaDB
 -- versão do PHP: 8.2.0
 
@@ -104,7 +104,7 @@ INSERT INTO `fotoperfil` (`id_foto`, `url_foto`) VALUES
 CREATE TABLE `login` (
   `id_user` int(11) NOT NULL,
   `nome_user` varchar(40) NOT NULL,
-  `senha_user` varchar(60) NOT NULL,
+  `senha_user` varchar(255) NOT NULL,
   `email_user` varchar(40) NOT NULL,
   `status_user` int(10) NOT NULL,
   `score_user` int(10) NOT NULL,
@@ -121,9 +121,9 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`id_user`, `nome_user`, `senha_user`, `email_user`, `status_user`, `score_user`, `user_perm`, `doador_user`, `posdoador_user`, `cpf_user`, `cep_user`, `nmr_user`) VALUES
-(1, 'user', 'ee11cbb19052e40b07aac0ca060c23ee', 'user@gmail.com', 1, 0, 0, 0, 0, '', '', ''),
-(2, 'analista', '5d3398164d3521a57ab4c73330fcf41a', 'analista@gmail.com', 1, 0, 1, 0, 0, '', '', ''),
-(3, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin@gmail.com', 1, 0, 2, 0, 0, '', '', '');
+(1, 'user', '$2y$10$Uo2UGAccu7ERxs6mm28Yt.gdJYpFm8UZTYWrL5zYVH9TA5BdYJCu.', 'user@gmail.com', 1, 0, 0, 0, 0, '', '', ''),
+(2, 'analista', '$2y$10$gLYv/T.gJ7ZdmtmiaskkgODJ0Hlk3rAURvLGXyZJbsg1gkY4LpOoG', 'analista@gmail.com', 1, 0, 1, 0, 0, '', '', ''),
+(3, 'admin', '$2y$10$QxSublI/1XJg31RyPViFzOyq1afzl2KIns1gpCK0QrWcjS/2qwgwO', 'admin@gmail.com', 1, 0, 2, 0, 0, '', '', '');
 
 --
 -- Índices para tabelas despejadas

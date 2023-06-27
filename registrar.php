@@ -95,6 +95,8 @@
                 #check da senha
                 if(strlen($pass) >= 0){
                     $pass_valida = true;
+
+                    $hash = password_hash($pass, PASSWORD_DEFAULT);
                 }
                 
                 if($email_valido && $user_valido && $pass_valida){
@@ -111,9 +113,9 @@
                         if($verif_nome->rowCount() == 0){
 
                             $reg = $conn->prepare('INSERT INTO `login` (nome_user, senha_user, email_user, status_user, score_user, user_perm, doador_user) 
-                                                        VALUES (:nome, md5(:pass), :email, 1, 0, 0, 0);');
+                                                        VALUES (:nome, :pass, :email, 1, 0, 0, 0);');
                             $reg->bindValue(":nome", $user);
-                            $reg->bindValue(":pass", $pass);
+                            $reg->bindValue(":pass", $hash);
                             $reg->bindValue(":email", $email);
                             $reg->execute();
 
