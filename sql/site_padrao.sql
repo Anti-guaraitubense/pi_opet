@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 27-Jun-2023 às 06:06
+-- Tempo de geração: 08-Abr-2024 às 21:24
 -- Versão do servidor: 10.4.27-MariaDB
 -- versão do PHP: 8.2.0
 
@@ -37,9 +37,9 @@ CREATE TABLE `bio` (
 --
 
 INSERT INTO `bio` (`id_bio`, `user_bio`) VALUES
-(1, 'Escreva sobre você'),
-(2, 'Escreva sobre você'),
-(3, 'Escreva sobre você');
+(1, 'usuario padrão'),
+(2, 'Analista do site Doasans!!'),
+(3, 'Admin do Doasans!');
 
 -- --------------------------------------------------------
 
@@ -56,6 +56,26 @@ CREATE TABLE `cartao` (
   `anov_cartao` varchar(20) DEFAULT NULL,
   `cvv_cartao` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `configuracao`
+--
+
+CREATE TABLE `configuracao` (
+  `id_user_cfg` int(9) NOT NULL,
+  `site_theme` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `configuracao`
+--
+
+INSERT INTO `configuracao` (`id_user_cfg`, `site_theme`) VALUES
+(1, 'dark_theme'),
+(2, 'dark_theme'),
+(3, 'dark_theme');
 
 -- --------------------------------------------------------
 
@@ -121,9 +141,9 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`id_user`, `nome_user`, `senha_user`, `email_user`, `status_user`, `score_user`, `user_perm`, `doador_user`, `posdoador_user`, `cpf_user`, `cep_user`, `nmr_user`) VALUES
-(1, 'user', '$2y$10$Uo2UGAccu7ERxs6mm28Yt.gdJYpFm8UZTYWrL5zYVH9TA5BdYJCu.', 'user@gmail.com', 1, 0, 0, 0, 0, '', '', ''),
-(2, 'analista', '$2y$10$gLYv/T.gJ7ZdmtmiaskkgODJ0Hlk3rAURvLGXyZJbsg1gkY4LpOoG', 'analista@gmail.com', 1, 0, 1, 0, 0, '', '', ''),
-(3, 'admin', '$2y$10$QxSublI/1XJg31RyPViFzOyq1afzl2KIns1gpCK0QrWcjS/2qwgwO', 'admin@gmail.com', 1, 0, 2, 0, 0, '', '', '');
+(1, 'user', '$2y$10$DeQxN3GGXsZzLUKSjHPSCedn79AoPfKr1XFDI9f6bj.R1jYa1xTAW', 'user@gmail.com', 1, 0, 0, 0, 0, '', '', ''),
+(2, 'analista', '$2y$10$M/LKTTizQQAy.vsWHHhIWeQFBPNYX/ibgL0qgBRGMN8N4kXteQ/Iu', 'analista@gmail.com', 1, 0, 0, 0, 0, '', '', ''),
+(3, 'admin', '$2y$10$4tKX9AqazvIsV15PoPYyTO4LHitBgmzZjQoajA9wjSXD1I6tHY77O', 'admin@gmail.com', 1, 0, 0, 0, 0, '', '', '');
 
 --
 -- Índices para tabelas despejadas
@@ -179,7 +199,7 @@ ALTER TABLE `cartao`
 -- AUTO_INCREMENT de tabela `doacao`
 --
 ALTER TABLE `doacao`
-  MODIFY `id_doacao` int(9) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_doacao` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `fotoperfil`

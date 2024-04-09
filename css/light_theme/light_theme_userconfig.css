@@ -11,12 +11,16 @@
 }
 
 :root{
-	--main-color: #00ff88;
-	--text-color: #f0ffffde;
+	--main-color: #00ff37;
+
+	--text-color: #1b1b1bf3;
 	--text-color2: #2b134b;
-	--other-color: #2f2841;
-	--second-color: #514869;
-	--bg-color: #201b2c;;
+	
+	--other-color: #39AA51;
+	--second-color: #248606;
+	
+	--bg-color: #364633da;
+	
 	--link-color: #00ffc8;
 	
 	--big-font: 4.5rem;
@@ -46,7 +50,7 @@ body{
     background: var(--second-color);
     border-radius: 10px;
     box-shadow: 0 10px 15px rgba(0, 0, 0, .1);
-    padding: 20px;
+    padding-left: 15px;
     width: 500px;
     position: absolute;
     left: -5.5vw;
@@ -193,4 +197,48 @@ p{
 	position: fixed;
 	top: 22vh;
 	left: 43vw;
+}
+
+.cfgbox{
+	position: absolute;
+	left: 30%;
+	top: 5%;
+}
+
+.leg{
+	color: var(--main-color);
+}
+
+.option{
+	color: var(--text-color);
+	padding-left: 25px;
+}
+
+#saveform{
+	position: absolute;
+	background: none;
+	box-shadow: none;
+	width: 500px;
+	left: 5%;
+	top: 10%;
+}
+
+.btnsave{
+    position: absolute;
+	background: none;
+    margin: 20px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #2b134b;
+    background-color: #00ff88;
+    cursor: pointer;
+    box-shadow: 0px 10px 40px -12px #00ff8052;
+	transition: transform, .2s;
+    padding: 20px;
+    width: 250px;
+	top: 650%;
 }

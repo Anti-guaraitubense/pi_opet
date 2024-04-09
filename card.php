@@ -8,6 +8,14 @@
 
     include 'config.php';
     include 'functions.php';
+
+    $usercfg = $conn->prepare('SELECT * FROM `configuracao` WHERE `id_user_cfg` = :id;');
+    $usercfg->bindValue(":id", $id_user_atual);
+    $usercfg->execute();
+
+    $usercfg = $usercfg->fetch();
+
+    $theme_cfg = $usercfg['site_theme'];
 ?>
 <!DOCTYPE html>
 <html lang="pt_BR">
@@ -15,7 +23,23 @@
     <meta charset="UTF-8">
     <title>Doasans</title>
     <script src="js/script.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/card.css">
+    <?php
+        if(isset($_SESSION['id'])){
+            if($theme_cfg == "dark_theme"){
+                ?>
+                <link rel="stylesheet" type="text/css" href="css/dark_theme/dark_theme_card.css">
+                <?php
+            }else if($theme_cfg == "light_theme"){
+                ?>
+                <link rel="stylesheet" type="text/css" href="css/light_theme/light_theme_card.css">
+                <?php
+            }
+        }else{
+            ?>
+            <link rel="stylesheet" type="text/css" href="css/dark_theme/dark_theme_card.css">
+            <?php
+        }
+    ?>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.3.0/remixicon.css" rel="stylesheet">
     <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
@@ -27,7 +51,7 @@
             <nav>
                 <a href="minhaconta.php" class="active"><i class='bx bxs-user'></i></a>
                 <a href="card.php" class="deactive"><i class='bx bxs-credit-card'></i></a>
-                <a href="#" class="active"><i class='bx bxs-cog'></i></a>
+                <a href="userconfig.php" class="active"><i class='bx bxs-cog'></i></a>
                 <a href="index.php" class="active"><i class='bx bx-arrow-back'></i></a>
                 
             </nav>
@@ -134,7 +158,6 @@
                                 <span>Ano de Vencimento</span>
                                 <select name="card_year" id="" class="year-input">
                                     <option value="year"select disabled>Ano</option>
-                                    <option value="2023">2023</option>
                                     <option value="2024">2024</option>
                                     <option value="2025">2025</option>
                                     <option value="2026">2026</option>

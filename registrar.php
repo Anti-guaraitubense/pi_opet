@@ -141,6 +141,10 @@
                             $cria_bio->bindValue(":id", $id_login);
                             $cria_bio->execute();
 
+                            $cfg_default = $conn->prepare('INSERT INTO `configuracao` (id_user_cfg, site_theme) VALUES (:id, "dark_theme");');
+                            $cfg_default->bindValue(":id", $id_login);
+                            $cfg_default->execute();
+
                             goto_page("index.php");
                         }
                         else{

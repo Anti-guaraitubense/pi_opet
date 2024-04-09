@@ -22,6 +22,14 @@
         exit();
     }
 
+    $usercfg = $conn->prepare('SELECT * FROM `configuracao` WHERE `id_user_cfg` = :id;');
+    $usercfg->bindValue(":id", $user_id);
+    $usercfg->execute();
+
+    $usercfg = $usercfg->fetch();
+
+    $theme_cfg = $usercfg['site_theme'];
+
 ?>
 
 <!DOCTYPE html>
@@ -29,8 +37,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doasans</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/controledoacao.css">
+    <?php
+        if(isset($_SESSION['id'])){
+            if($theme_cfg == "dark_theme"){
+                ?>
+                <link rel="stylesheet" type="text/css" href="css/dark_theme/dark_theme_index.css">
+                <?php
+            }else if($theme_cfg == "light_theme"){
+                ?>
+                <link rel="stylesheet" type="text/css" href="css/light_theme/light_theme_index.css">
+                <?php
+            }
+        }else{
+            ?>
+            <link rel="stylesheet" type="text/css" href="css/dark_theme/dark_theme_index.css">
+            <?php
+        }
+    ?>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.3.0/remixicon.css" rel="stylesheet">
     <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">

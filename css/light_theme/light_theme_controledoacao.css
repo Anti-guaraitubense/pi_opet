@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+:root{
+	--main-color: #00ff37;
+
+	--text-color: #1b1b1bf3;
+	--text-color2: #2b134b;
+	
+	--other-color: #39AA51;
+	--second-color: #248606;
+	
+	--bg-color: #364633da;
+	--link-color: #00ffc8;
+	
+	--comp-color: #FF2100;
+	--comp-color-dark: #B31700;
+
+	--error-color: #f01f1f;
+
+	--big-font: 4.5rem;
+	--h2-font: 2.6rem;
+	--p-font: 1.1rem;
+}
+
+.logo{
+	position: fixed;
+	left: 5vw;
+	top: 5vh;
+}
+
+.user-name{
+	text-transform: capitalize;
+	text-decoration: underline;
+	position: relative;
+	top: 18vh;
+	left: 7vw;
+	font-size: 200%;
+	color: var(--text-color);
+	transition: .1s;
+}
+.user-name:hover{
+	color: var(--main-color);
+	transition: .1s;
+}
+
+.sub-name{
+	position: fixed;
+	top: 13vh;
+	left: 7vw;
+}
+
+span{
+	color: var(--text-color);
+	font-size: 150%;
+}
+
+.imgs{
+	width: 200px;
+	height: 150px;
+}
+
+.doacoes-block{
+	position: relative;
+	top: 12vh;
+	left: 5vw;
+	max-width: 500px;
+}
+
+.voltar-link{
+	font-size: 150%;
+	position: fixed;
+	top: 5.7vh;
+	left: 16vw;
+	color: var(--main-color);
+	font-weight: bold;
+}
+.voltar-link-pos{
+	font-size: 150%;
+	position: fixed;
+	top: 5.7vh;
+	left: 16vw;
+	color: var(--main-color);
+	font-weight: bold;
+}
+
+.expd-link{
+	color: var(--main-color);
+	font-weight: 600;
+}
+.expd-link:hover{
+	color: var(--link-color);
+}
+
+.img-doacao-expd{
+	width: 300px; 
+	height: 250px;
+}
+
+.doacoes-expd-block{
+	position: relative;
+	top: 12vh;
+	left: 5vw;
+	max-width: 1000px;
+}
+
+.no-data{
+	position: relative;
+	top: 15vh;
+	left: 7vw;
+	max-width: 1000px;
+}

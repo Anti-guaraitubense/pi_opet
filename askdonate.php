@@ -8,6 +8,14 @@
     }else{
         $id_user_atual = $_SESSION['id'];
     }
+
+    $usercfg = $conn->prepare('SELECT * FROM `configuracao` WHERE `id_user_cfg` = :id;');
+    $usercfg->bindValue(":id", $id_user_atual);
+    $usercfg->execute();
+
+    $usercfg = $usercfg->fetch();
+
+    $theme_cfg = $usercfg['site_theme'];
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +24,23 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Doasans</title>
-        <link rel="stylesheet" type="text/css" href="css/askdonate.css">
+        <?php
+        if(isset($_SESSION['id'])){
+            if($theme_cfg == "dark_theme"){
+                ?>
+                <link rel="stylesheet" type="text/css" href="css/dark_theme/dark_theme_askdonate.css">
+                <?php
+            }else if($theme_cfg == "light_theme"){
+                ?>
+                <link rel="stylesheet" type="text/css" href="css/light_theme/light_theme_askdonate.css">
+                <?php
+            }
+        }else{
+            ?>
+            <link rel="stylesheet" type="text/css" href="css/dark_theme/dark_theme_askdonate.css">
+            <?php
+        }
+    ?>
         <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
         <script src="js/donate.js"></script>

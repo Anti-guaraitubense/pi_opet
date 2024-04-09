@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+*,
+*::before,
+*::after{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+    outline: none;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+:root{
+	--main-color: #00ff88;
+	--text-color: #f0ffffde;
+	--text-color2: #2b134b;
+	--other-color: #2f2841;
+	--second-color: #514869;
+	--bg-color: #201b2c;;
+	--link-color: #00ffc8;
+	
+	--big-font: 4.5rem;
+	--h2-font: 2.6rem;
+	--p-font: 1.1rem;
+}
+
+body{
+	font-family: 'Noto Sans', sans-serif;
+	background: var(--bg-color);
+	overflow: hidden;
+    box-sizing: border-box;
+}
+
+.container{
+	background: var(--other-color);
+	width: 700px;
+	height: 630px;
+	margin: 0 auto;
+	position: relative;
+	margin-top: 7%;
+	box-shadow: 2px 5px 20px rgba(145, 105, 147, 0.5);
+	border-radius: 20px;
+}
+
+.container form{    
+    background: var(--second-color);
+    border-radius: 10px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, .1);
+    padding-left: 15px;
+    width: 500px;
+    position: absolute;
+    left: -5.5vw;
+    top: 23vh;
+}
+
+.container form .inputbox{
+    margin-top: 20px;
+}
+
+.container form .inputbox span{
+    display: block;
+    color: #999;
+    padding-bottom: 5px;
+}
+
+.container form .inputbox input,
+.container form .inputbox select{
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0, .3);
+    color: #444;
+}
+
+.container form .flexbox{
+    display: flex;
+    gap: 15px;
+}
+
+.container form .flexbox .inputbox{
+    flex: 1 1 150px;
+}
+
+.container form .submit-btn{
+    width: 100%;
+    background: linear-gradient(45deg, #00ff88, #31d1ac);
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 20px;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .2s linear;
+}
+
+.container form .submit-btn:hover{
+    letter-spacing: 2px;
+    opacity: .8;
+}
+
+.cvv-input{
+    position: relative;
+    top: 22px;
+}
+
+.leftbox{
+	float: left;
+	top: -5%;
+	left: 5%;
+	position: absolute;
+	width: 15%;
+	height: 110%;
+	background: var(--second-color);
+	box-shadow: 3px 3px 10px rgba(145, 105, 147, 0.5);
+	padding: 10px;
+	border-radius: 20px;
+}
+
+nav a{
+	list-style: none;
+	padding: 35px;
+	padding-top: 85px;
+	color: var(--text-color);
+	font-size: 1.1em;
+	display: block;
+	transition: all 0.3s ease-in-out;
+}
+
+nav a:hover{
+	color: var(--main-color);
+	transform: scale(1.2);
+	cursor: pointer;
+}
+
+nav a:first-child{
+	margin-top: 7px;
+}
+
+.active{
+	color: var(--main-color);
+}
+.deactive{
+	color: var(--text-color);
+}
+
+.rightbox{
+	float: right;
+	width: 60%;
+	height: 100%;
+}
+
+.profile{
+	position: absolute;
+	width: 70%;
+	
+}
+
+h1{
+	color: var(--text-color);
+	font-size: 1em;
+	margin-top: 40px;
+	margin-bottom: 35px;
+}
+
+h2{
+	color: var(--main-color);
+	width: 80%;
+	text-transform: uppercase;
+	font-size: 20px;
+	letter-spacing: 1px;
+	margin-left: 2px;
+	padding-bottom: 5px;
+	padding-top: 12px;
+}
+
+p{
+	border-width: 1px;
+	border-style: solid;
+	border-image: linear-gradient(to right, #3fb7a8, rgba(126,211,134,0.5)) 1 0%;
+	border-top: 0;
+	width: 65%;
+	padding: 5px 0;
+	color: var(--text-color);
+	
+}
+
+.cartoes{
+	position: relative;
+	color: var(--link-color);
+}
+
+.cartoes-box{
+	position: fixed;
+	top: 22vh;
+	left: 43vw;
+}
+
+.cfgbox{
+	position: absolute;
+	left: 30%;
+	top: 5%;
+}
+
+.leg{
+	color: var(--main-color);
+}
+
+.option{
+	color: var(--text-color);
+	padding-left: 25px;
+}
+
+#saveform{
+	position: absolute;
+	background: none;
+	box-shadow: none;
+	width: 500px;
+	left: 5%;
+	top: 10%;
+}
+
+.btnsave{
+    position: absolute;
+	background: none;
+    margin: 20px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #2b134b;
+    background-color: #00ff88;
+    cursor: pointer;
+    box-shadow: 0px 10px 40px -12px #00ff8052;
+	transition: transform, .2s;
+    padding: 20px;
+    width: 250px;
+	top: 650%;
+}
