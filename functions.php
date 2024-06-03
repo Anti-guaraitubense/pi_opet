@@ -134,4 +134,13 @@
                 </script>";
     }
 
+    function encode_image($tmp_name, $type){
+
+        
+        $filecontent = file_get_contents($tmp_name);
+
+        $b64img = base64_encode($filecontent);
+        return "data:$type;base64,$b64img";
+    }
+
 ?>

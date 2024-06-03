@@ -137,17 +137,17 @@
                             $arq_novonome = ($renomear == true) ? time().$extfinal : $arqnome.$extfinal;
                             $arq_novonome_val = $arq_novonome;
 
-                            $destino = $pasta.$arq_novonome;
-                            $destino_val = $pasta_val.$arq_novonome_val;
+                            $arq = encode_image($arqnometemp, $tipoarq);
+                            $arqval = encode_image($arqnometemp_val, $tipoarq_val);
     
                             move_uploaded_file($arqnometemp, $destino);
                             move_uploaded_file($arqnometemp_val, $destino_val);
 
-                            $doar = $conn->prepare('INSERT INTO `doacao` (nome_doacao, img_doacao, img_validade, status_doacao, user_doador, validade_doacao, data_doacao)
-                                                    VALUES (:nome, :urlfoto, :urlvalidade, 1, :id, :val, :data_doacao)');
+                            $doar = $conn->prepare('INSERT INTO `doacao` (nome_doacao, img_doacao, img_validade, status_doacao, user_doador, validade_doacao, data_doacao, id_validador)
+                                                    VALUES (:nome, :urlfoto, :urlvalidade, 1, :id, :val, :data_doacao, 0)');
                             $doar->bindValue(":nome", $nome);
-                            $doar->bindValue(":urlfoto", $destino);
-                            $doar->bindValue(":urlvalidade", $destino_val);
+                            $doar->bindValue(":urlfoto", $arq);
+                            $doar->bindValue(":urlvalidade", $arqval);
                             $doar->bindValue(":id", $id_user);
                             $doar->bindValue(":val", $validade);
                             $doar->bindvalue(":data_doacao", date('d/m/Y'));

@@ -13,6 +13,7 @@
 
     $info = $infos->fetch();
     $perm = $info['user_perm'];
+    echo $perm;
     $perm_nome = "";
     switch($perm){
         case 1:
@@ -73,7 +74,7 @@
         }
     ?>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.3.0/remixicon.css" rel="stylesheet">
-    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 </head>
 <body onload="evitar_dados_reload()";>
@@ -310,16 +311,18 @@
                         if($tamanhoarq < $tamanhomax){
                             $arq_novonome = ($renomear == true) ? time().$extfinal : $arqnome.$extfinal;
 
-                            $destino = $pasta.$arq_novonome;
-
-                            move_uploaded_file($arqnometemp, $destino);
+                            $image = encode_image($arqnometemp, $tipoarq);
 
                             $alt_foto = $conn->prepare('UPDATE `fotoperfil` SET `url_foto` = :urlfoto WHERE id_foto = :id');
                             $alt_foto->bindValue(":id", $id_user_atual);
-                            $alt_foto->bindValue(":urlfoto", $destino);
-                            $alt_foto->execute();
+                            $alt_foto->bindValue(":urlfoto", $image);
+                            try{
+                                $alt_foto->execute();
 
-                            goto_page("minhaconta.php");
+                                goto_page("minhaconta.php");
+                            }catch(Exception $e){
+                                echo "<h5 class='error-text'>Arquivo muito grande</h5>";
+                            }
                         }else{
                             echo "<h5 class='error-text'>Arquivo muito grande</h5>";
                         }
